@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="LOTUS PORTFOLIO - Bikini Bottom Edition"><title>Profile • SPONGEBOB PORTFOLIO</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Mali:wght@400;600;700&display=swap');
+
+:root {
+  --sponge-yellow: #fff01f;
+  --sponge-holes: #d4cc00;
+  --ocean-blue: #00bfff;
+  --deep-ocean: #005c8a;
+  --krabby-red: #ff3333;
+  --patrick-pink: #ff85a2;
+  --patrick-dots: #ff5277;
+  --squid-teal: #48d1cc;
+  --plankton-green: #2e8b57;
+  --sand-gold: #f4a460;
+  --white: #ffffff;
+  --shirt-white: #f8f9fa;
+  --tie-red: #d63031;
+  --pants-brown: #8b4513;
+  --belt-black: #2d3436;
+  --glass: rgba(0, 191, 255, 0.25);
+  --line: #fff01f;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Mali', cursive, sans-serif;
+  color:var(--white);
+  background: radial-gradient(circle at 50% 0%, #1ae0ff 0%, #0077be 45%, #003366 100%);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+a{color:inherit}
+
+/* ดอกไม้เมฆใต้ทะเล Bikini Bottom Flowers */
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background-image: 
+    radial-gradient(circle at 20% 20%, var(--patrick-pink) 20px, transparent 20px),
+    radial-gradient(circle at 23% 17%, var(--patrick-pink) 15px, transparent 15px),
+    radial-gradient(circle at 17% 23%, var(--patrick-pink) 15px, transparent 15px),
+    radial-gradient(circle at 80% 30%, var(--squid-teal) 25px, transparent 25px),
+    radial-gradient(circle at 84% 26%, var(--squid-teal) 18px, transparent 18px),
+    radial-gradient(circle at 76% 34%, var(--squid-teal) 18px, transparent 18px),
+    radial-gradient(circle at 50% 80%, var(--sponge-yellow) 22px, transparent 22px);
+  opacity: 0.3;
+  z-index:-2;
+}
+
+::-webkit-scrollbar{width:12px}
+::-webkit-scrollbar-track{background:#002b49}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--sponge-yellow),var(--patrick-pink));border-radius:20px;border:3px solid #002b49}
+
+/* Cursor Glow */
+#mouseGlow{position:fixed;width:250px;height:250px;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,240,31,0.3),rgba(255,133,162,0.15) 40%,transparent 70%);filter:blur(5px);}
+.mouse-star{position:fixed;pointer-events:none;z-index:99998;color:var(--sponge-yellow);font-size:16px;text-shadow:0 0 8px var(--sponge-yellow);animation:mouseStar .8s ease-out forwards}
+.click-ripple{position:fixed;width:20px;height:20px;border-radius:50%;border:3px solid var(--sponge-yellow);pointer-events:none;z-index:99997;transform:translate(-50%,-50%);box-shadow:0 0 15px var(--sponge-yellow);animation:clickRipple 1s ease-out forwards}
+@keyframes mouseStar{0%{opacity:1;transform:scale(.4)}100%{opacity:0;transform:translate(var(--mx),var(--my)) scale(1.5) rotate(180deg)}}
+@keyframes clickRipple{0%{width:10px;height:10px;opacity:1}100%{width:180px;height:180px;opacity:0}}
+
+/* ฟองอากาศลอย Floating Bubbles */
+.petals-container{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.floating-petal{position:absolute;bottom:-50px;opacity:.7;animation:bubbleUp linear infinite}
+.floating-petal::before{content:"🫧";display:block;font-size:24px;filter:drop-shadow(0 0 5px var(--ocean-blue))}
+@keyframes bubbleUp{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.8}50%{transform:translateY(-50vh) translateX(50px)}100%{transform:translateY(-110vh) translateX(-50px);opacity:0}}
+
+.site-header{position:fixed;top:18px;left:0;width:100%;z-index:1000}
+.navbar{
+  width:min(1180px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;
+  border:4px solid var(--sponge-yellow);border-radius:50px;background:rgba(0, 70, 120, 0.85);backdrop-filter:blur(10px);
+  box-shadow:0 10px 0px #002b49, inset 0 0 15px rgba(255,240,31,0.3);
+}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:'Fredoka One',cursive;font-size:22px;color:var(--sponge-yellow);text-shadow:2px 2px 0 #000;}
+.logo-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;font-size:22px;background:var(--sponge-yellow);border:2px solid #000;box-shadow:2px 2px 0 #000;}
+.logo strong{display:block;font-family:'Mali',sans-serif;font-size:10px;letter-spacing:2px;color:var(--patrick-pink)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{position:relative;text-decoration:none;color:#fff;font-family:'Fredoka One',cursive;font-size:16px;letter-spacing:1px;transition:.2s;text-shadow:1px 1px 0 #000}
+.nav-links a:hover,.nav-links a.active{color:var(--sponge-yellow);transform:scale(1.1) rotate(-2deg)}
+
+.page-wrap{position:relative;z-index:5}
+.page-hero{min-height:50vh;padding:150px 6% 60px;display:grid;place-items:center;text-align:center;position:relative}
+.page-kicker{color:var(--sponge-yellow);letter-spacing:4px;font-size:14px;font-weight:bold;text-shadow:1px 1px 0 #000}
+.page-hero h1{font-family:'Fredoka One',cursive;font-size:clamp(48px,8vw,85px);margin-top:10px;color:var(--sponge-yellow);text-shadow:4px 4px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000}
+.page-hero h1 span{color:var(--patrick-pink)}
+.page-hero p{margin-top:18px;color:#e0f7ff;max-width:680px;line-height:1.8;font-size:18px;font-weight:600}
+
+.content-section{padding:30px 6% 110px}
+.content-grid{width:min(1120px,100%);margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.glass-card{
+  position:relative;overflow:hidden;border:4px solid var(--sponge-yellow);background:rgba(0, 92, 138, 0.85);
+  backdrop-filter:blur(10px);border-radius:35px;padding:35px;box-shadow:8px 8px 0px #002b49;transition:.3s
+}
+.glass-card:hover{transform:translateY(-8px) rotate(1deg);box-shadow:12px 12px 0px #002b49}
+.glass-card h2,.glass-card h3{font-family:'Fredoka One',cursive;color:var(--sponge-yellow);text-shadow:2px 2px 0 #000}
+.glass-card h2{font-size:32px}.glass-card h3{font-size:24px}
+.glass-card p{color:#f0f9ff;line-height:1.8;margin-top:12px;font-size:16px}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{padding:8px 16px;border-radius:20px;border:2px solid #000;background:var(--patrick-pink);font-size:13px;font-weight:bold;color:#000;box-shadow:2px 2px 0 #000}
+
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.stat{padding:16px;text-align:center;border-radius:20px;background:rgba(255,240,31,0.15);border:3px solid var(--sponge-yellow)}
+.stat strong{display:block;color:var(--sponge-yellow);font-family:'Fredoka One';font-size:32px;text-shadow:2px 2px 0 #000}
+.stat span{display:block;margin-top:5px;color:#fff;font-size:11px;font-weight:bold;letter-spacing:1px}
+
+.timeline{position:relative;margin-top:26px;padding-left:25px;border-left:4px dashed var(--sponge-yellow)}
+.timeline-item{position:relative;padding:0 0 28px 20px}
+.timeline-item:before{content:"🧽";position:absolute;left:-44px;top:-2px;font-size:22px}
+.timeline-item small{color:var(--sponge-yellow);font-weight:bold;letter-spacing:2px;background:#000;padding:2px 8px;border-radius:10px}
+.timeline-item h3{margin-top:10px}.timeline-item p{font-size:15px}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:22px}
+.interest{
+  min-height:210px;position:relative;overflow:hidden;border-radius:28px;padding:24px;
+  border:4px solid var(--patrick-pink);background:linear-gradient(145deg,rgba(255,133,162,0.3),rgba(0,191,255,0.3));
+  box-shadow:6px 6px 0px #002b49;transition:.3s
+}
+.interest:hover{transform:translateY(-8px) scale(1.02);border-color:var(--sponge-yellow)}
+.interest .glyph{font-size:36px}
+.interest h3{margin-top:15px;font-family:'Fredoka One';font-size:24px;color:var(--sponge-yellow);text-shadow:2px 2px 0 #000}
+.interest p{margin-top:8px;color:#fff;line-height:1.6;font-size:14px}
+
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;width:min(1100px,100%);margin:auto}
+.contact-item{display:flex;gap:15px;padding:18px;border-radius:20px;border:3px solid var(--sponge-yellow);background:rgba(0,43,73,0.8);margin-top:12px;align-items:center}
+.contact-icon{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;background:var(--sponge-yellow);border:2px solid #000;color:#000;font-size:22px;font-weight:bold;box-shadow:2px 2px 0 #000}
+.contact-item small{color:var(--patrick-pink);display:block;font-weight:bold}
+.contact-item strong{font-size:16px;color:#fff}
+
+.quote{font-family:'Fredoka One',cursive;font-size:32px;line-height:1.4;color:var(--sponge-yellow);text-shadow:3px 3px 0 #000}
+.quote em{color:var(--patrick-pink);font-style:normal}
+
+.footer{position:relative;text-align:center;padding:60px 20px 30px;border-top:5px solid var(--sponge-yellow);background:#001d33}
+.footer-flower{font-size:40px;margin-bottom:10px}
+.footer h3{font-family:'Fredoka One';font-size:26px;color:var(--sponge-yellow)}
+.footer p{color:#a0e0ff;margin-top:5px;font-size:14px}
+.footer-links{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin:20px 0}
+.footer-links a{color:#fff;text-decoration:none;font-size:14px;font-weight:bold;transition:.2s}
+.footer-links a:hover{color:var(--sponge-yellow);text-decoration:underline}
+
+/* Music Player Style */
+.music-dock{
+  position:fixed;right:20px;bottom:20px;width:320px;z-index:9990;border:4px solid var(--sponge-yellow);
+  border-radius:25px;padding:15px;background:var(--deep-ocean);box-shadow:6px 6px 0px #002b49
+}
+.music-head strong{display:block;font-size:14px;color:var(--sponge-yellow);font-family:'Fredoka One'}
+.music-head small{display:block;font-size:10px;color:var(--patrick-pink)}
+.yt-link{font-size:11px;color:#000;font-weight:bold;text-decoration:none;padding:6px 12px;border:2px solid #000;border-radius:12px;background:var(--sponge-yellow);box-shadow:2px 2px 0 #000;display:inline-block;margin-top:5px}
+.track-title{font-family:'Fredoka One';font-size:18px;color:#fff;margin:8px 0}
+.site-audio{width:100%;height:35px;border-radius:10px;margin-top:5px}
+
+/* Home Hero Section */
+.home-hero{min-height:100vh;position:relative;overflow:hidden;padding:140px 6% 80px;display:flex;align-items:center}
+.home-content{position:relative;z-index:5;width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:30px;border:3px solid #000;background:var(--sponge-yellow);color:#000;font-weight:bold;font-size:13px;box-shadow:3px 3px 0 #000}
+.chapter{display:block;margin-top:20px;color:var(--patrick-pink);font-weight:bold;font-size:14px;letter-spacing:2px}
+.home-copy h2{margin-top:10px;font-size:clamp(40px,6vw,70px);line-height:1.1;font-family:'Fredoka One',cursive;color:#fff;text-shadow:4px 4px 0 #000}
+.home-copy h2 span{color:var(--sponge-yellow)}
+.role{margin-top:15px;color:var(--squid-teal);font-weight:bold;font-size:18px;text-shadow:1px 1px 0 #000}
+.description{margin-top:15px;max-width:550px;color:#e0f7ff;line-height:1.8;font-size:16px;font-weight:600}
+
+.home-buttons{display:flex;gap:15px;margin-top:25px;flex-wrap:wrap}
+.button{text-decoration:none;padding:14px 28px;border-radius:30px;display:inline-flex;align-items:center;gap:10px;font-family:'Fredoka One',cursive;font-size:16px;transition:.2s;border:3px solid #000;box-shadow:4px 4px 0 #000}
+.button.primary{color:#000;background:var(--sponge-yellow)}
+.button.primary:hover{transform:translate(-2px, -2px);box-shadow:6px 6px 0 #000;background:#fff55c}
+.button.secondary{color:#000;background:var(--patrick-pink)}
+.button.secondary:hover{transform:translate(-2px, -2px);box-shadow:6px 6px 0 #000;background:#ffa3b8}
+
+.home-mini-info{display:flex;margin-top:35px;width:max-content;max-width:100%;padding:15px 25px;border-radius:25px;border:4px solid var(--sponge-yellow);background:rgba(0,43,73,0.9);box-shadow:5px 5px 0 #002b49}
+.home-mini-info div{min-width:80px;text-align:center;padding:0 15px}
+.home-mini-info div+div{border-left:3px dashed var(--sponge-yellow)}
+.home-mini-info strong{display:block;color:var(--sponge-yellow);font-family:'Fredoka One';font-size:28px;text-shadow:2px 2px 0 #000}
+.home-mini-info span{color:#fff;font-size:11px;font-weight:bold}
+
+/* Pineapple House Graphic Container */
+.home-lake{position:relative;height:480px;display:grid;place-items:center;background:rgba(255,255,255,0.05);border-radius:40px;border:4px dashed var(--sponge-yellow)}
+.pineapple-house{font-size:180px;filter:drop-shadow(8px 8px 0px #000);animation:pineappleBob 3s ease-in-out infinite}
+@keyframes pineappleBob{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-15px) rotate(2deg)}}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .home-content,.content-grid,.contact-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .gallery-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr}
+}
+</style></head>
+<body>
+
+<div id="mouseGlow"></div>
+<div class="petals-container">
+  <div class="floating-petal" style="left:10%;animation-duration:8s"></div>
+  <div class="floating-petal" style="left:30%;animation-duration:12s;animation-delay:2s"></div>
+  <div class="floating-petal" style="left:60%;animation-duration:9s;animation-delay:4s"></div>
+  <div class="floating-petal" style="left:85%;animation-duration:11s;animation-delay:1s"></div>
+</div>
+
+<header class="site-header">
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <div class="logo-icon">🧽</div>
+      <div>
+        SPONGEBOB
+        <strong>BIKINI BOTTOM PORTFOLIO</strong>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#about" class="active">เกี่ยวกับฉัน</a>
+      <a href="#experience">ประสบการณ์</a>
+      <a href="#interests">สิ่งที่ชอบ</a>
+      <a href="#contact">ติดต่อ</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page-wrap">
+  <section class="home-hero">
+    <div class="home-content">
+      <div class="home-copy">
+        <span class="eyebrow">🍍 READY! I'M READY!</span>
+        <span class="chapter">ยินดีต้อนรับสู่บ้านสับปะรด</span>
+        <h2>สวัสดี! ฉันคือ <span>สปอนจ์บอร์ด</span> สแควร์แพนท์</h2>
+        <div class="role">🍔 หัวหน้าพ่อครัวทำแฮมเบอร์เกอร์ Krabby Patty แห่งร้านกุ้งมังกร (Krusty Krab)</div>
+        <p class="description">
+          ยินดีต้อนรับสู่พอร์ตโฟลิโอสไตล์ Bikini Bottom! ฉันรักการทำ Krabby Patty, ตกแมงกะพรุนกับแพทริค และเป่าฟองอากาศ! พร้อมทำงานด้วยความขยันสุดๆ 1000%!
+        </p>
+        <div class="home-buttons">
+          <a href="#contact" class="button primary">🍔 จ้างฉันทำงาน!</a>
+          <a href="#interests" class="button secondary">🪼 ไปจับแมงกะพรุน</a>
+        </div>
+        <div class="home-mini-info">
+          <div>
+            <strong>300+</strong>
+            <span>ถ้วยรางวัลพนักงานดีเด่น</span>
+          </div>
+          <div>
+            <strong>100%</strong>
+            <span>พลังงานความสดใส</span>
+          </div>
+          <div>
+            <strong>∞</strong>
+            <span> Krabby Patty ที่ทำ</span>
+          </div>
+        </div>
+      </div>
+      <div class="home-lake">
+        <div class="pineapple-house">🍍</div>
+        <div style="position:absolute; bottom:20px; font-family:'Fredoka One'; color:var(--sponge-yellow); font-size:20px; text-shadow:2px 2px 0 #000;">
+          124 Conch Street, Bikini Bottom
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="content-section">
+    <div class="content-grid">
+      <div class="glass-card">
+        <h2>🧽 ข้อมูลส่วนตัว (About Me)</h2>
+        <p>ฉันเป็นฟองน้ำสีเหลืองสดใส มีรูพรุนรอบตัว ใส่กางเกงเหลี่ยมสีน้ำตาล เนกไทสีแดง! อาศัยอยู่ในบ้านสับปะรดใต้ทะเลพร้อมกับ "แกรี่" หอยทากสัตว์เลี้ยงที่ร้องเหมือนแมว!</p>
+        <div class="chips">
+          <span class="chip">✨ ขยันขันแข็ง</span>
+          <span class="chip">🍔 ทำ Krabby Patty</span>
+          <span class="chip">🫧 เป่าฟองอากาศ</span>
+          <span class="chip">🪼 ตกแมงกะพรุน</span>
+          <span class="chip">🐚 เป่าแตรคาราเต้</span>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h2>⭐️ เพื่อนรักซุปตาร์ (Best Friends)</h2>
+        <p>ชีวิตใน Bikini Bottom จะไม่สมบูรณ์แบบเลยถ้าไม่มีแก๊งเพื่อนสุดเพี้ยนเหล่านี้:</p>
+        <div class="stat-row">
+          <div class="stat">
+            <strong>⭐️</strong>
+            <span>พาทริค สตาร์</span>
+          </div>
+          <div class="stat">
+            <strong>ผู้ใหญ่บ้าน</strong>
+            <span>สควิดเวิร์ด</span>
+          </div>
+          <div class="stat">
+            <strong>🐿️</strong>
+            <span>แซนดี้ ชีกส์</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="content-section">
+    <div class="content-grid" style="grid-template-columns: 1fr;">
+      <div class="glass-card">
+        <h2>📜 ประวัติการทำงาน (Work History)</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <small>PRESENT</small>
+            <h3>หัวหน้าเชฟทำเบอร์เกอร์ประจำ Krusty Krab</h3>
+            <p>รับผิดชอบการทำ Krabby Patty ทุกชิ้นด้วยความรัก คอยปกป้องสูตรลับจากแพลงก์ตอน และคว้าตำแหน่งพนักงานดีเด่นประจำเดือนติดต่อกัน 300 สมัย!</p>
+          </div>
+          <div class="timeline-item">
+            <small>EVERYDAY</small>
+            <h3>นักจับแมงกะพรุนระดับมืออาชีพ (Jellyfish Fields)</h3>
+            <p>ใช้นวนิยายการจับแมงกะพรุนร่วมกับพาทริค เพลิดเพลินกับเสียงดนตรีตามธรรมชาติใต้ท้องทะเล</p>
+          </div>
+          <div class="timeline-item">
+            <small>ALL TIME</small>
+            <h3>นักเรียนโรงเรียนสอนขับเรือของคุณนายพัฟฟ์ (Puff's Boating School)</h3>
+            <p>กำลังพยายามอย่างสุดความสามารถเพื่อสอบใบขับขี่เรือให้ผ่าน! (ครั้งที่ 1,258... สอบเที่ยวหน้ารอดแน่!)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="interests" class="content-section">
+    <div style="text-align:center; margin-bottom:40px;">
+      <h2 style="font-family:'Fredoka One'; font-size:45px; color:var(--sponge-yellow); text-shadow:3px 3px 0 #000;">งานอดิเรกสุดโปรด!</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="interest">
+        <div class="glyph">🪼</div>
+        <h3>ตกแมงกะพรุน</h3>
+        <p>ออกวิ่งเล่นในทุ่งแมงกะพรุนพร้อมไม้ช้อนคู่ใจ แล้วปล่อยพวกมันไปอย่างปลอดภัย!</p>
+      </div>
+      <div class="interest">
+        <div class="glyph">🫧</div>
+        <h3>เป่าฟองอากาศ</h3>
+        <p>ใช้เทคนิคพิเศษ "หมุนตัว เท้าชี้ฟ้า" เป่าฟองอากาศออกมาเป็นรูปร่างสัตว์ต่างๆ!</p>
+      </div>
+      <div class="interest">
+        <div class="glyph">🥋</div>
+        <h3>ฝึกคาราเต้</h3>
+        <p>สวมนวมเป่าลมยักษ์แล้วซ้อมคาราเต้สุดมันส์กับแซนดี้ ชีกส์!</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="content-section">
+    <div class="contact-grid">
+      <div class="glass-card">
+        <h2>📞 ติดต่อสปอนจ์บอร์ด</h2>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <small>ที่อยู่บ้าน</small>
+            <strong>124 Conch Street, Bikini Bottom, Pacific Ocean</strong>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🍔</div>
+          <div>
+            <small>สถานที่ทำงาน</small>
+            <strong>The Krusty Krab (ตรงข้าม Chum Bucket)</strong>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🐌</div>
+          <div>
+            <small>ส่งข้อความผ่าน</small>
+            <strong>แกรี่ หอยทากส่งสาร (Meow!)</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="display:flex; align-items:center; justify-content:center; text-align:center;">
+        <div class="quote">
+          "คำว่า <em>'เพื่อน'</em> คือคนที่อยู่เคียงข้างคุณเสมอ... แม้ในวันที่คุณเป่าฟองอากาศแตก!"
+          <div style="font-size:16px; margin-top:15px; color:var(--patrick-pink);">- SpongeBob SquarePants</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-flower">🌸</div>
+  <h3>BIKINI BOTTOM PORTFOLIO</h3>
+  <p>สร้างสรรค์ด้วยความสดใสและพลังแห่ง Krabby Patty!</p>
+  <div class="footer-links">
+    <a href="#about">เกี่ยวกับฉัน</a>
+    <a href="#experience">ประสบการณ์</a>
+    <a href="#interests">งานอดิเรก</a>
+  </div>
+  <p style="font-size:11px; opacity:0.6; margin-top:15px;">© Nickelodeon - SpongeBob SquarePants Fan Theme</p>
+</footer>
+
+<div class="music-dock">
+  <div class="music-head">
+    <div>
+      <strong>เพลง BIKINI BOTTOM THEME</strong>
+      <small>เพลงประกอบสุดมันส์ใต้ทะเล</small>
+    </div>
+  </div>
+  <div class="track-title">🎵 Ocean Man / SpongeBob Main Theme</div>
+  <a href="https://www.youtube.com/results?search_query=spongebob+soundtrack" target="_blank" class="yt-link">▶ ฟังเพลงบน YouTube</a>
+</div>
+
+<script>
+// เอฟเฟกต์เมาส์ฟองอากาศและดาว
+document.addEventListener('mousemove', function(e) {
+  const mouseGlow = document.getElementById('mouseGlow');
+  mouseGlow.style.left = e.clientX + 'px';
+  mouseGlow.style.top = e.clientY + 'px';
+
+  if (Math.random() < 0.15) {
+    const star = document.createElement('div');
+    star.className = 'mouse-star';
+    star.innerHTML = '🫧';
+    star.style.left = e.clientX + 'px';
+    star.style.top = e.clientY + 'px';
+    star.style.setProperty('--mx', (Math.random() * 80 - 40) + 'px');
+    star.style.setProperty('--my', (Math.random() * -80 - 20) + 'px');
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 800);
+  }
+});
+
+document.addEventListener('click', function(e) {
+  const ripple = document.createElement('div');
+  ripple.className = 'click-ripple';
+  ripple.style.left = e.clientX + 'px';
+  ripple.style.top = e.clientY + 'px';
+  document.body.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 1000);
+});
+</script>
+
+</body></html>
