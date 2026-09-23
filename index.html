@@ -6,7 +6,79 @@
   <title>SPONGE-PORTFOLIO</title>
   <style>
     /* ============================================================
-       1. GLOBAL RESET & NEON BACKGROUND
+       1. INTRO SPLASH SCREEN (หน้าต่างเปิดเว็บแบบการ์ตูน)
+       ============================================================ */
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: radial-gradient(circle, #ff007f 0%, #7b00ff 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease, transform 1s ease;
+      cursor: pointer;
+    }
+
+    #intro-screen.fade-out {
+      opacity: 0;
+      transform: scale(1.3);
+      pointer-events: none;
+    }
+
+    .intro-title-card {
+      background: #ffd700;
+      border: 8px solid #000;
+      padding: 30px 50px;
+      border-radius: 25px;
+      box-shadow: 12px 12px 0px #000;
+      text-align: center;
+      animation: pulseIntro 1.5s infinite alternate;
+    }
+
+    .intro-title-card h1 {
+      font-size: 3.2rem;
+      color: #000;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .intro-title-card p {
+      font-size: 1.3rem;
+      color: #ff007f;
+      font-weight: bold;
+    }
+
+    .start-btn {
+      margin-top: 30px;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      background: #00f3ff;
+      border: 4px solid #000;
+      border-radius: 50px;
+      box-shadow: 6px 6px 0px #000;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.1);
+      background: #ff00a0;
+    }
+
+    @keyframes pulseIntro {
+      0% { transform: scale(0.98) rotate(-1deg); }
+      100% { transform: scale(1.02) rotate(1deg); }
+    }
+
+    /* ============================================================
+       2. CLASSIC BIKINI BOTTOM BACKGROUND (พื้นหลังแบบการ์ตูน)
        ============================================================ */
     * {
       box-sizing: border-box;
@@ -17,119 +89,126 @@
 
     html, body {
       min-height: 100vh;
+      /* พื้นหลังโทนฟ้าสว่างสไตล์การ์ตูน SpongeBob */
       background: 
-        radial-gradient(circle at 50% 20%, rgba(255, 105, 180, 0.45) 0%, transparent 50%),
-        radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.4) 0%, transparent 40%),
-        linear-gradient(180deg, #020b24 0%, #001f4d 40%, #0d4b75 70%, #011627 100%) !important;
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.6) 0%, transparent 60%),
+        linear-gradient(180deg, #18b3ff 0%, #0080eb 60%, #004b99 100%) !important;
       background-attachment: fixed !important;
       color: #ffffff;
       overflow-x: hidden;
       position: relative;
     }
 
+    /* ลำแสงแดดส่องลงใต้น้ำ (Sunbeams) */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0.15) 0px,
+        rgba(255, 255, 255, 0.15) 40px,
+        transparent 40px,
+        transparent 100px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
     /* ============================================================
-       2. BUBBLES ANIMATION
+       3. BUBBLES ANIMATION
        ============================================================ */
     .bubbles-container {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
 
     .bubble {
       position: absolute;
       bottom: -100px;
-      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(0, 243, 255, 0.4));
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(135, 206, 250, 0.5));
+      border: 2px solid rgba(255, 255, 255, 0.8);
       border-radius: 50%;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.9);
-      animation: rise 10s infinite ease-in;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      animation: rise 8s infinite ease-in;
     }
 
     @keyframes rise {
-      0% { transform: translateY(0) scale(0.5) translateX(0); opacity: 0; }
+      0% { transform: translateY(0) scale(0.6) translateX(0); opacity: 0; }
       20% { opacity: 0.8; }
       80% { opacity: 0.8; }
-      100% { transform: translateY(-120vh) scale(1.2) translateX(100px); opacity: 0; }
+      100% { transform: translateY(-120vh) scale(1.2) translateX(80px); opacity: 0; }
     }
 
     /* ============================================================
-       3. REAL SPONGEBOB FLOWER CLOUDS (เมฆดอกไม้สไตล์ SpongeBob)
+       4. REAL SPONGEBOB FLOWER CLOUDS
        ============================================================ */
     .sb-flower {
       position: fixed;
-      width: 120px;
-      height: 120px;
-      z-index: 1;
-      opacity: 0.65;
+      width: 110px;
+      height: 110px;
+      z-index: 2;
+      opacity: 0.85;
       animation: floatFlower 6s ease-in-out infinite alternate;
     }
 
-    .sb-flower svg {
-      width: 100%;
-      height: 100%;
-    }
+    .sb-flower svg { width: 100%; height: 100%; }
 
-    .flower-1 { top: 8%; left: 5%; filter: drop-shadow(0 0 15px #ff77bc); }
-    .flower-2 { top: 12%; right: 6%; filter: drop-shadow(0 0 15px #00f3ff); animation-delay: -2s; }
-    .flower-3 { bottom: 12%; left: 4%; filter: drop-shadow(0 0 15px #ffd700); animation-delay: -4s; }
+    .flower-1 { top: 6%; left: 4%; }
+    .flower-2 { top: 10%; right: 6%; animation-delay: -2s; }
+    .flower-3 { bottom: 15%; left: 5%; animation-delay: -4s; }
 
     @keyframes floatFlower {
-      0% { transform: translateY(0px) rotate(0deg) scale(1); }
-      100% { transform: translateY(-25px) rotate(20deg) scale(1.1); }
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-20px) rotate(15deg); }
     }
 
     /* ============================================================
-       4. NAVBAR
+       5. NAVBAR & CONTENT
        ============================================================ */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 50px;
-      background: rgba(2, 11, 36, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 2px solid rgba(0, 243, 255, 0.4);
+      background: rgba(0, 75, 153, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 4px solid #ffd700;
       position: relative;
       z-index: 10;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 900;
       color: #ffd700;
-      text-shadow: 0 0 10px #ffd700, 2px 2px 0px #000;
+      text-shadow: 3px 3px 0px #000;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 15px;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 15px; list-style: none; }
 
     .nav-links a {
       color: #ffffff;
       text-decoration: none;
       padding: 8px 18px;
       border-radius: 20px;
-      font-weight: 600;
+      font-weight: bold;
       transition: all 0.3s ease;
+      text-shadow: 1px 1px 0px #000;
     }
 
     .nav-links a.active, .nav-links a:hover {
-      background: #00f3ff;
-      color: #020b24;
-      box-shadow: 0 0 15px #00f3ff;
+      background: #ffd700;
+      color: #000;
+      box-shadow: 0 4px 0px #000;
     }
 
-    /* ============================================================
-       5. HERO SECTION
-       ============================================================ */
     .hero-container {
       max-width: 1100px;
       margin: 40px auto;
@@ -144,82 +223,81 @@
 
     .badge-quote {
       display: inline-block;
-      padding: 6px 16px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid #ffd700;
+      padding: 6px 18px;
+      background: #ffd700;
+      border: 3px solid #000;
       border-radius: 20px;
-      color: #ffd700;
-      font-size: 0.9rem;
-      font-weight: bold;
+      color: #000;
+      font-size: 0.95rem;
+      font-weight: 900;
       margin-bottom: 15px;
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+      box-shadow: 4px 4px 0px #000;
     }
 
     .hero-text h1 {
       font-size: 2.8rem;
       color: #ffffff;
       margin-bottom: 10px;
-      text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+      text-shadow: 3px 3px 0px #000;
     }
 
-    .hero-text h1 span {
-      color: #00f3ff;
-      text-shadow: 0 0 15px #00f3ff;
-    }
+    .hero-text h1 span { color: #ffd700; }
 
     .hero-text h3 {
       color: #ff77bc;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 15px;
-      text-shadow: 0 0 8px #ff77bc;
+      text-shadow: 2px 2px 0px #000;
     }
 
     .hero-text p {
-      color: #d1e8ff;
+      color: #ffffff;
       line-height: 1.6;
       margin-bottom: 25px;
+      font-weight: 500;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
-    .btn-group {
-      display: flex;
-      gap: 15px;
-    }
+    .btn-group { display: flex; gap: 15px; }
 
     .btn-primary {
       padding: 12px 28px;
-      background: linear-gradient(180deg, #00f3ff 0%, #0088cc 100%);
+      background: #ffd700;
       color: #000;
-      border: none;
+      border: 3px solid #000;
       border-radius: 25px;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 0 15px #00f3ff;
-      transition: all 0.3s;
+      box-shadow: 4px 4px 0px #000;
+      transition: all 0.2s;
     }
 
     .btn-secondary {
       padding: 12px 28px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #ff00a0;
+      background: #ff77bc;
+      border: 3px solid #000;
       color: #fff;
       border-radius: 25px;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 0 15px #ff00a0;
-      transition: all 0.3s;
+      box-shadow: 4px 4px 0px #000;
+      transition: all 0.2s;
+      text-shadow: 1px 1px 0px #000;
     }
 
     .btn-primary:hover, .btn-secondary:hover {
-      transform: translateY(-3px) scale(1.05);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #000;
     }
 
     .profile-card {
       position: relative;
-      background: linear-gradient(135deg, #0077ff, #ff00a0);
+      background: linear-gradient(135deg, #0080eb, #ff77bc);
+      border: 4px solid #000;
       border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
       padding: 50px 20px;
       text-align: center;
-      box-shadow: 0 0 30px #ff00a0, 0 0 50px #00f3ff;
+      box-shadow: 8px 8px 0px #000;
       animation: morphBlob 8s ease-in-out infinite alternate;
     }
 
@@ -229,20 +307,21 @@
     }
 
     .profile-card h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #fff;
-      text-shadow: 2px 2px 0px #000;
+      text-shadow: 3px 3px 0px #000;
     }
 
     .tag-fan, .tag-student {
       position: absolute;
       background: #ffffff;
       color: #000;
+      border: 2px solid #000;
       padding: 5px 15px;
       border-radius: 15px;
-      font-weight: bold;
+      font-weight: 900;
       font-size: 0.85rem;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      box-shadow: 3px 3px 0px #000;
     }
 
     .tag-fan { top: 10px; left: -10px; }
@@ -254,9 +333,9 @@
     .section-title {
       text-align: center;
       margin: 40px 0 20px;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #ffd700;
-      text-shadow: 0 0 15px #ffd700;
+      text-shadow: 3px 3px 0px #000;
       position: relative;
       z-index: 10;
     }
@@ -273,58 +352,38 @@
     }
 
     .card {
-      background: rgba(2, 11, 36, 0.75);
-      backdrop-filter: blur(15px);
-      border: 2px solid #00f3ff;
+      background: rgba(0, 75, 153, 0.85);
+      border: 3px solid #000;
       border-radius: 20px;
       padding: 25px;
       text-align: center;
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+      box-shadow: 6px 6px 0px #000;
       transition: all 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      border-color: #ff00a0;
-      box-shadow: 0 0 30px #ff00a0;
+      transform: translateY(-5px);
+      background: rgba(0, 128, 235, 0.95);
+      box-shadow: 8px 8px 0px #000;
     }
 
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .card h3 {
-      color: #ffd700;
-      margin-bottom: 5px;
-    }
+    .card-icon { font-size: 2.8rem; margin-bottom: 10px; }
+    .card h3 { color: #ffd700; text-shadow: 2px 2px 0px #000; }
 
     /* ============================================================
-       7. FIX CORNER CHARACTERS (รูปตัวละครแก้ลิงก์เรียบร้อย)
+       7. CORNER CHARACTERS
        ============================================================ */
     .character {
       position: fixed;
       bottom: 0;
       z-index: 100;
       pointer-events: none;
-      filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.8));
+      filter: drop-shadow(4px 4px 0px #000);
     }
 
-    .character img {
-      width: 120px;
-      height: auto;
-      display: block;
-    }
-
-    .spongebob-corner {
-      left: 10px;
-      animation: floatSpongeBob 3s ease-in-out infinite alternate;
-    }
-
-    .patrick-corner {
-      right: 10px;
-      animation: floatPatrick 3.5s ease-in-out infinite alternate;
-    }
+    .character img { width: 130px; height: auto; display: block; }
+    .spongebob-corner { left: 10px; animation: floatSpongeBob 3s ease-in-out infinite alternate; }
+    .patrick-corner { right: 10px; animation: floatPatrick 3.5s ease-in-out infinite alternate; }
 
     @keyframes floatSpongeBob {
       0% { transform: translateY(0) rotate(-5deg); }
@@ -339,24 +398,33 @@
     @media (max-width: 768px) {
       .hero-container { grid-template-columns: 1fr; text-align: center; }
       .btn-group { justify-content: center; }
-      .character img { width: 75px; }
+      .character img { width: 85px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- เอฟเฟกต์ฟองอากาศลอยขึ้น -->
+  <!-- 🎬 หน้าเปิดเว็บการ์ตูน INTRO SPLASH SCREEN -->
+  <div id="intro-screen" onclick="enterWebsite()">
+    <div class="intro-title-card">
+      <h1>A FEW MOMENTS LATER...</h1>
+      <p>ยินดีต้อนรับสู่ BIKINI BOTTOM PORTFOLIO</p>
+    </div>
+    <button class="start-btn">🧽 ENTER BIKINI BOTTOM 🌊</button>
+  </div>
+
+  <!-- เอฟเฟกต์ฟองอากาศ -->
   <div class="bubbles-container" id="bubbles"></div>
 
-  <!-- เมฆดอกไม้ SpongeBob ดั้งเดิมแบบ SVG -->
+  <!-- เมฆดอกไม้ SpongeBob -->
   <div class="sb-flower flower-1">
-    <svg viewBox="0 0 100 100"><path fill="#ff77bc" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ffd700"/></svg>
+    <svg viewBox="0 0 100 100"><path fill="#ff77bc" stroke="#000" stroke-width="3" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ffd700" stroke="#000" stroke-width="2"/></svg>
   </div>
   <div class="sb-flower flower-2">
-    <svg viewBox="0 0 100 100"><path fill="#00f3ff" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ffffff"/></svg>
+    <svg viewBox="0 0 100 100"><path fill="#00f3ff" stroke="#000" stroke-width="3" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ffffff" stroke="#000" stroke-width="2"/></svg>
   </div>
   <div class="sb-flower flower-3">
-    <svg viewBox="0 0 100 100"><path fill="#ffd700" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ff77bc"/></svg>
+    <svg viewBox="0 0 100 100"><path fill="#ffd700" stroke="#000" stroke-width="3" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ff77bc" stroke="#000" stroke-width="2"/></svg>
   </div>
 
   <!-- NAVBAR -->
@@ -410,9 +478,8 @@
     </div>
   </div>
 
-  <!-- แก้ไขลิงก์รูปภาพตัวละคร (โหลดได้ชัวร์ 100%) -->
+  <!-- ตัวละคร SPONGEBOB & PATRICK -->
   <div class="character spongebob-corner">
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" style="display:none;" />
     <img src="https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43c0a3.png" alt="SpongeBob" onerror="this.src='https://pngimg.com/uploads/spongebob/spongebob_PNG61.png'">
   </div>
   <div class="character patrick-corner">
@@ -421,9 +488,19 @@
 
   <!-- JAVASCRIPT -->
   <script>
+    // สคริปต์เมื่อผู้ใช้กดปุ่มเข้าเว็บ
+    function enterWebsite() {
+      const intro = document.getElementById('intro-screen');
+      intro.classList.add('fade-out');
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 1000);
+    }
+
+    // สร้างฟองอากาศลอยสุ่ม
     function createBubbles() {
       const container = document.getElementById('bubbles');
-      const bubbleCount = 22;
+      const bubbleCount = 25;
 
       for (let i = 0; i < bubbleCount; i++) {
         const bubble = document.createElement('div');
@@ -431,8 +508,8 @@
         
         const size = Math.random() * 35 + 10 + 'px';
         const left = Math.random() * 100 + '%';
-        const delay = Math.random() * 8 + 's';
-        const duration = Math.random() * 6 + 6 + 's';
+        const delay = Math.random() * 6 + 's';
+        const duration = Math.random() * 6 + 5 + 's';
 
         bubble.style.width = size;
         bubble.style.height = size;
