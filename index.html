@@ -6,7 +6,7 @@
   <title>SPONGE-PORTFOLIO</title>
   <style>
     /* ============================================================
-       1. GLOBAL & BIKINI BOTTOM BACKGROUND
+       1. GLOBAL & ULTRA BIKINI BOTTOM BACKGROUND
        ============================================================ */
     * {
       box-sizing: border-box;
@@ -17,43 +17,106 @@
 
     html, body {
       min-height: 100vh;
-      background: 
-        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
-        linear-gradient(180deg, #18b3ff 0%, #0080eb 60%, #004b99 100%) !important;
+      background: linear-gradient(180deg, #00d2ff 0%, #0072ff 40%, #003366 100%) !important;
       background-attachment: fixed !important;
       color: #ffffff;
       overflow-x: hidden;
       position: relative;
     }
 
+    /* ☀️ ลำแสงอาทิตย์ส่องจากผิวน้ำ (Sun Rays / Caustics Effect) */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: repeating-linear-gradient(
-        115deg,
-        rgba(255, 255, 255, 0.15) 0px,
-        rgba(255, 255, 255, 0.15) 40px,
+        110deg,
+        rgba(255, 255, 255, 0.25) 0px,
+        rgba(255, 255, 255, 0.25) 40px,
         transparent 40px,
-        transparent 100px
+        transparent 120px
       );
+      filter: blur(8px);
       pointer-events: none;
       z-index: 1;
+      animation: rayMove 8s infinite alternate ease-in-out;
     }
 
+    @keyframes rayMove {
+      0% { opacity: 0.5; transform: scaleX(1) translateX(0); }
+      100% { opacity: 0.9; transform: scaleX(1.1) translateX(20px); }
+    }
+
+    /* 🏜️ เนินทรายและพื้นทราย multi-layer */
     .sand-floor {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 90px;
-      background: #e6c875;
+      height: 100px;
+      background: linear-gradient(180deg, #f4d068 0%, #c29b38 100%);
+      border-top: 6px solid #000;
+      z-index: 2;
+    }
+
+    .sand-dune {
+      position: fixed;
+      bottom: 60px;
+      left: -10%;
+      width: 120%;
+      height: 80px;
+      background: #e6be53;
+      border-radius: 50%;
       border-top: 5px solid #000;
       z-index: 2;
     }
 
+    /* 🪸 ปะการังและสาหร่ายตกแต่งด้านล่าง */
+    .sea-decor {
+      position: fixed;
+      bottom: 80px;
+      width: 100%;
+      max-width: 1300px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .seaweed {
+      animation: sway 3s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+    }
+
+    @keyframes sway {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(8deg); }
+    }
+
+    /* 🪼 แมงกะพรุนลอยแบบดุ๊กดิ๊ก */
+    .jellyfish-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .jellyfish {
+      position: absolute;
+      animation: floatJelly 6s ease-in-out infinite alternate;
+      opacity: 0.85;
+    }
+
+    @keyframes floatJelly {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      100% { transform: translateY(-35px) rotate(3deg); }
+    }
+
     /* ============================================================
-       MOUSE TRAIL & CLICK EFFECTS (ลูกเล่นเมาส์)
+       MOUSE TRAIL & CLICK EFFECTS
        ============================================================ */
     .mouse-bubble {
       position: fixed;
@@ -67,14 +130,8 @@
     }
 
     @keyframes floatMouseBubble {
-      0% {
-        transform: translate(-50%, -50%) scale(0.3);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(-50%, -60px) scale(1.2);
-        opacity: 0;
-      }
+      0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+      100% { transform: translate(-50%, -60px) scale(1.2); opacity: 0; }
     }
 
     .click-ripple {
@@ -87,26 +144,16 @@
     }
 
     @keyframes rippleEffect {
-      0% {
-        width: 0px;
-        height: 0px;
-        opacity: 1;
-        transform: translate(-50%, -50%);
-      }
-      100% {
-        width: 80px;
-        height: 80px;
-        opacity: 0;
-        transform: translate(-50%, -50%);
-      }
+      0% { width: 0px; height: 0px; opacity: 1; transform: translate(-50%, -50%); }
+      100% { width: 80px; height: 80px; opacity: 0; transform: translate(-50%, -50%); }
     }
 
     /* ============================================================
-       2. CONCH STREET HOUSES (บ้าน SVG)
+       2. CONCH STREET HOUSES (บ้าน SVG ทั้ง 3 หลัง)
        ============================================================ */
     .houses-container {
       position: fixed;
-      bottom: 60px;
+      bottom: 75px;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
@@ -114,9 +161,9 @@
       display: flex;
       justify-content: space-around;
       align-items: flex-end;
-      z-index: 2;
+      z-index: 3;
       pointer-events: none;
-      opacity: 0.85;
+      filter: drop-shadow(0px 10px 8px rgba(0,0,0,0.4));
     }
 
     .house-item { display: flex; flex-direction: column; align-items: center; }
@@ -205,7 +252,7 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 3;
+      z-index: 4;
     }
 
     .bubble {
@@ -226,14 +273,14 @@
     }
 
     /* ============================================================
-       5. NAVBAR & MULTI-TAB SECTIONS
+       5. NAVBAR & TABS
        ============================================================ */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 50px;
-      background: rgba(0, 75, 153, 0.85);
+      background: rgba(0, 51, 102, 0.85);
       backdrop-filter: blur(10px);
       border-bottom: 4px solid #ffd700;
       position: relative;
@@ -272,23 +319,20 @@
     .tab-content {
       display: none;
       max-width: 1100px;
-      margin: 30px auto 120px;
+      margin: 30px auto 140px;
       padding: 20px;
       position: relative;
       z-index: 10;
       animation: fadeIn 0.4s ease-in-out;
     }
 
-    .tab-content.active-tab {
-      display: block;
-    }
+    .tab-content.active-tab { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* HERO STYLES */
     .hero-container {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -364,9 +408,8 @@
 
     .profile-card h2 { font-size: 2.2rem; color: #fff; text-shadow: 3px 3px 0px #000; }
 
-    /* CONTENT BOX */
     .content-box {
-      background: rgba(0, 75, 153, 0.9);
+      background: rgba(0, 51, 102, 0.9);
       border: 4px solid #000;
       border-radius: 25px;
       padding: 35px;
@@ -380,12 +423,6 @@
       text-shadow: 3px 3px 0px #000;
     }
 
-    .content-box p, .content-box li {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      margin-bottom: 10px;
-    }
-
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -394,7 +431,7 @@
     }
 
     .card {
-      background: rgba(0, 128, 235, 0.95);
+      background: rgba(0, 102, 204, 0.95);
       border: 3px solid #000;
       border-radius: 20px;
       padding: 25px;
@@ -414,8 +451,21 @@
 </head>
 <body>
 
-  <!-- 🏠 บ้าน SVG ด้านหลัง -->
+  <!-- 🪼 แมงกะพรุนลอยตกแต่งพื้นหลัง -->
+  <div class="jellyfish-container">
+    <svg class="jellyfish" style="top: 15%; left: 8%; width: 60px;" viewBox="0 0 100 120">
+      <path d="M 20 60 Q 50 0, 80 60 Q 50 70, 20 60 Z" fill="#ff77bc" stroke="#000" stroke-width="4"/>
+      <path d="M 30 65 Q 35 90, 25 110 M 50 67 Q 50 95, 50 115 M 70 65 Q 65 90, 75 110" stroke="#ff77bc" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <svg class="jellyfish" style="top: 25%; right: 10%; width: 80px; animation-delay: -3s;" viewBox="0 0 100 120">
+      <path d="M 20 60 Q 50 0, 80 60 Q 50 70, 20 60 Z" fill="#ff77bc" stroke="#000" stroke-width="4"/>
+      <path d="M 30 65 Q 35 90, 25 110 M 50 67 Q 50 95, 50 115 M 70 65 Q 65 90, 75 110" stroke="#ff77bc" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- 🏠 บ้าน SVG ทั้ง 3 หลัง (คงเดิมเรียบร้อย) -->
   <div class="houses-container">
+    <!-- บ้าน Patrick (หอยเชลล์) -->
     <div class="house-item">
       <svg width="120" height="110" viewBox="0 0 120 110">
         <path d="M 10 100 Q 15 20, 60 20 Q 105 20, 110 100 Z" fill="#8B4513" stroke="#000" stroke-width="5"/>
@@ -425,6 +475,7 @@
         <circle cx="80" cy="5" r="5" fill="#ff0000" stroke="#000" stroke-width="2"/>
       </svg>
     </div>
+    <!-- บ้าน Squidward (โมอาย) -->
     <div class="house-item">
       <svg width="130" height="180" viewBox="0 0 130 180">
         <rect x="25" y="30" width="80" height="140" rx="20" fill="#4682B4" stroke="#000" stroke-width="5"/>
@@ -434,6 +485,7 @@
         <circle cx="65" cy="145" r="18" fill="#555" stroke="#000" stroke-width="4"/>
       </svg>
     </div>
+    <!-- บ้าน SpongeBob (สับปะรด) -->
     <div class="house-item">
       <svg width="150" height="210" viewBox="0 0 150 210">
         <path d="M 75 40 Q 40 10, 20 25 Q 50 45, 65 50" fill="#2e8b57" stroke="#000" stroke-width="4"/>
@@ -448,6 +500,17 @@
     </div>
   </div>
 
+  <!-- 🪸 ปะการังและสาหร่ายตกแต่งหน้าบ้าน -->
+  <div class="sea-decor">
+    <svg class="seaweed" width="50" height="90" viewBox="0 0 50 90">
+      <path d="M 10 90 Q 30 60, 10 30 Q 0 10, 20 0 Q 30 20, 20 50 Z" fill="#2e8b57" stroke="#000" stroke-width="3"/>
+    </svg>
+    <svg class="seaweed" style="animation-delay: -1.5s;" width="60" height="100" viewBox="0 0 60 100">
+      <path d="M 40 100 Q 10 70, 30 40 Q 50 10, 30 0 Q 10 30, 20 70 Z" fill="#ff4500" stroke="#000" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <div class="sand-dune"></div>
   <div class="sand-floor"></div>
 
   <!-- 🎬 INTRO SCREEN -->
@@ -474,8 +537,6 @@
   </nav>
 
   <!-- ==================== SECTIONS / TABS ==================== -->
-
-  <!-- 1. TAB หน้าแรก -->
   <div id="tab-home" class="tab-content active-tab">
     <div class="hero-container">
       <div class="hero-text">
@@ -514,7 +575,6 @@
     </div>
   </div>
 
-  <!-- 2. TAB ประวัติส่วนตัว -->
   <div id="tab-about" class="tab-content">
     <div class="content-box">
       <h2>🧽 ประวัติส่วนตัว (About Me)</h2>
@@ -526,7 +586,6 @@
     </div>
   </div>
 
-  <!-- 3. TAB การศึกษา -->
   <div id="tab-education" class="tab-content">
     <div class="content-box">
       <h2>🎓 ประวัติการศึกษา (Education)</h2>
@@ -545,7 +604,6 @@
     </div>
   </div>
 
-  <!-- 4. TAB งานอดิเรก -->
   <div id="tab-hobbies" class="tab-content">
     <div class="content-box">
       <h2>🎮 งานอดิเรก & สิ่งที่ชอบ (Hobbies)</h2>
@@ -569,7 +627,6 @@
     </div>
   </div>
 
-  <!-- 5. TAB ติดต่อ -->
   <div id="tab-contact" class="tab-content">
     <div class="content-box">
       <h2>📞 ช่องทางการติดต่อ (Contact Me)</h2>
@@ -588,7 +645,6 @@
       burstBubbles();
     }
 
-    // ฟังก์ชั่นสลับเปลี่ยนหน้าเมนู
     function switchTab(tabId, btnElement) {
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.classList.remove('active-tab'));
@@ -635,20 +691,15 @@
 
     createBubbles();
 
-    /* ============================================================
-       MOUSE EFFECT SCRIPT (ระบบฟองสบู่และวงน้ำตามเมาส์)
-       ============================================================ */
+    /* MOUSE EFFECT SCRIPT */
     let lastBubbleTime = 0;
 
-    // สร้างฟองสบู่เมื่อลากเมาส์
     document.addEventListener('mousemove', function(e) {
       const now = Date.now();
-      // สร้างฟองทุกๆ 50ms เพื่อไม่ให้กินสเปกเครื่องเกินไป
       if (now - lastBubbleTime > 50) {
         const bubble = document.createElement('div');
         bubble.className = 'mouse-bubble';
         
-        // สุ่มขนาดฟองเมาส์เล็กน้อย
         const size = Math.random() * 15 + 10 + 'px';
         bubble.style.width = size;
         bubble.style.height = size;
@@ -658,7 +709,6 @@
 
         document.body.appendChild(bubble);
 
-        // ลบ Element ออกจากหน้าเว็บเมื่อแสดงผลเสร็จ
         setTimeout(() => {
           bubble.remove();
         }, 1000);
@@ -667,7 +717,6 @@
       }
     });
 
-    // สร้างวงน้ำเมื่อกดคลิก
     document.addEventListener('click', function(e) {
       const ripple = document.createElement('div');
       ripple.className = 'click-ripple';
