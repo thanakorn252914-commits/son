@@ -1,98 +1,452 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ยินดีต้อนรับสู่โลกของฉัน! - SpongeBob Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPONGE-PORTFOLIO</title>
+  <style>
+    /* ============================================================
+       1. GLOBAL RESET & NEON BACKGROUND (บังคับทับสไตล์เดิม)
+       ============================================================ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background: 
+        radial-gradient(circle at 50% 20%, rgba(255, 105, 180, 0.45) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.4) 0%, transparent 40%),
+        linear-gradient(180deg, #020b24 0%, #001f4d 40%, #0d4b75 70%, #011627 100%) !important;
+      background-attachment: fixed !important;
+      color: #ffffff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ============================================================
+       2. BUBBLES ANIMATION (ฟองอากาศลอยขึ้น)
+       ============================================================ */
+    .bubbles-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(0, 243, 255, 0.4));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.9);
+      animation: rise 10s infinite ease-in;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(0.5) translateX(0); opacity: 0; }
+      20% { opacity: 0.8; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(-120vh) scale(1.2) translateX(100px); opacity: 0; }
+    }
+
+    /* ============================================================
+       3. SPONGEBOB FLOWER CLOUDS (เมฆดอกไม้เรืองแสง)
+       ============================================================ */
+    .flower-cloud {
+      position: fixed;
+      width: 90px;
+      height: 90px;
+      background: #ff77bc;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 20px #ff00a0) drop-shadow(0 0 40px #00f3ff);
+      opacity: 0.55;
+      z-index: 1;
+      animation: floatCloud 8s ease-in-out infinite alternate;
+    }
+
+    .flower-cloud::before, .flower-cloud::after {
+      content: '';
+      position: absolute;
+      background: #ff77bc;
+      border-radius: 50%;
+    }
+
+    .flower-cloud::before { width: 60px; height: 60px; top: -25px; left: 15px; }
+    .flower-cloud::after { width: 60px; height: 60px; bottom: -25px; left: 15px; }
+
+    .cloud-1 { top: 10%; left: 8%; }
+    .cloud-2 { top: 20%; right: 10%; background: #00f3ff; filter: drop-shadow(0 0 20px #00f3ff); }
+    .cloud-3 { bottom: 15%; left: 5%; background: #ffd700; filter: drop-shadow(0 0 20px #ffd700); }
+
+    @keyframes floatCloud {
+      0% { transform: translateY(0px) rotate(0deg) scale(1); }
+      100% { transform: translateY(-30px) rotate(20deg) scale(1.15); }
+    }
+
+    /* ============================================================
+       4. NAVBAR (แถบเมนูด้านบน)
+       ============================================================ */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: rgba(2, 11, 36, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(0, 243, 255, 0.4);
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700, 2px 2px 0px #000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a.active, .nav-links a:hover {
+      background: #00f3ff;
+      color: #020b24;
+      box-shadow: 0 0 15px #00f3ff;
+    }
+
+    /* ============================================================
+       5. HERO SECTION (ส่วนต้อนรับหลัก)
+       ============================================================ */
+    .hero-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .badge-quote {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid #ffd700;
+      border-radius: 20px;
+      color: #ffd700;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+    }
+
+    .hero-text h1 span {
+      color: #00f3ff;
+      text-shadow: 0 0 15px #00f3ff;
+    }
+
+    .hero-text h3 {
+      color: #ff77bc;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 8px #ff77bc;
+    }
+
+    .hero-text p {
+      color: #d1e8ff;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn-primary {
+      padding: 12px 28px;
+      background: linear-gradient(180deg, #00f3ff 0%, #0088cc 100%);
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00f3ff;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary {
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #ff00a0;
+      color: #fff;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff00a0;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    /* รูปโปรไฟล์ทรงแปลกสไตล์เดิม */
+    .profile-card {
+      position: relative;
+      background: linear-gradient(135deg, #0077ff, #ff00a0);
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 0 30px #ff00a0, 0 0 50px #00f3ff;
+      animation: morphBlob 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes morphBlob {
+      0% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+      100% { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+    }
+
+    .profile-card h2 {
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 2px 2px 0px #000;
+    }
+
+    .tag-fan, .tag-student {
+      position: absolute;
+      background: #ffffff;
+      color: #000;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-weight: bold;
+      font-size: 0.85rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    .tag-fan { top: 10px; left: -10px; }
+    .tag-student { bottom: 10px; right: -10px; background: #ffd700; }
+
+    /* ============================================================
+       6. HIGHLIGHT CARDS (ส่วนการ์ดด้านล่าง)
+       ============================================================ */
+    .section-title {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 1.8rem;
+      color: #ffd700;
+      text-shadow: 0 0 15px #ffd700;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cards-container {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .card {
+      background: rgba(2, 11, 36, 0.75);
+      backdrop-filter: blur(15px);
+      border: 2px solid #00f3ff;
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #ff00a0;
+      box-shadow: 0 0 30px #ff00a0;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      color: #ffd700;
+      margin-bottom: 5px;
+    }
+
+    /* ============================================================
+       7. CORNER CHARACTERS (SpongeBob & Patrick)
+       ============================================================ */
+    .character {
+      position: fixed;
+      bottom: 10px;
+      z-index: 100;
+      pointer-events: none;
+      filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.6)) drop-shadow(0 0 25px rgba(255, 0, 160, 0.5));
+    }
+
+    .character img {
+      width: 130px;
+      height: auto;
+      display: block;
+    }
+
+    .spongebob-corner {
+      left: 15px;
+      animation: floatSpongeBob 3s ease-in-out infinite alternate;
+    }
+
+    .patrick-corner {
+      right: 15px;
+      animation: floatPatrick 3.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatSpongeBob {
+      0% { transform: translateY(0) rotate(-6deg); }
+      100% { transform: translateY(-18px) rotate(4deg); }
+    }
+
+    @keyframes floatPatrick {
+      0% { transform: translateY(0) rotate(5deg); }
+      100% { transform: translateY(-22px) rotate(-5deg); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-container { grid-template-columns: 1fr; text-align: center; }
+      .btn-group { justify-content: center; }
+      .character img { width: 80px; }
+    }
+  </style>
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo-container">
-            <span class="bubble-icon">🧽</span>
-            <span class="logo-text">SPONGE-PORTFOLIO</span>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">หน้าแรก</a></li>
-                <li><a href="profile.html">ประวัติส่วนตัว</a></li>
-                <li><a href="education.html">การศึกษา</a></li>
-                <li><a href="hobby.html">งานอดิเรก</a></li>
-                <li><a href="contact.html">ติดต่อ</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <div class="badge">✨ "I'M READY! I'M READY!" ✨</div>
-                    <h1 class="hero-title">สวัสดีครับ! ผมชื่อ <span class="highlight">[กรอกชื่อ]</span></h1>
-                    <p class="hero-subtitle">นักเรียนชั้น ม.3/[กรอกห้อง] | โรงเรียน[กรอกชื่อโรงเรียน]</p>
-                    <p class="hero-description">
-                        ยินดีต้อนรับสู่อาณาจักร Portfolio สไตล์ Bikini Bottom แบบเวอร์วังอลังการ!
-                        เพียบพร้อมไปด้วยความตั้งใจ ความฝัน และผลงานที่ทำด้วยความสนุกสนาน 🌊🧽✨
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="profile.html" class="btn btn-primary">รู้จักฉันมากขึ้น 🧽</a>
-                        <a href="hobby.html" class="btn btn-secondary">ดูงานอดิเรก 🎮</a>
-                    </div>
-                </div>
-                <div class="hero-image-wrapper">
-                    <div class="bubble-bg-glow"></div>
-                    <div class="image-frame">
-                        <img src="https://placehold.co/400x400/1976D2/ffffff?text=My+Profile" alt="รูปโปรไฟล์ของฉัน" class="hero-img">
-                    </div>
-                    <div class="floating-badge badge-1">🧽 SpongeBob Fan</div>
-                    <div class="floating-badge badge-2">⭐ M.3 Student</div>
-                </div>
-            </div>
-        </section>
+  <!-- เอฟเฟกต์ฟองอากาศลอยขึ้น -->
+  <div class="bubbles-container" id="bubbles"></div>
 
-        <section class="quick-highlights">
-            <h2 class="section-title">🌟 ไฮไลต์สุดอลังการของผม 🌟</h2>
-            <div class="card-grid">
-                <div class="feature-card">
-                    <div class="card-icon">📚</div>
-                    <h3>วิชาที่ชอบที่สุด</h3>
-                    <p>[กรอกวิชาที่ชอบ] - เรียนสนุก ท้าทาย เหมือนสู้กับแมงกะพรุน!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="card-icon">🍍</div>
-                    <h3>บ้านหลังที่สอง</h3>
-                    <p>โรงเรียน[กรอกชื่อโรงเรียน] ชั้น ม.3/[กรอกห้อง]</p>
-                </div>
-                <div class="feature-card">
-                    <div class="card-icon">🍔</div>
-                    <h3>คติประจำใจ</h3>
-                    <p>"สูตรลับของความสำเร็จ คือความพยายามอย่างไม่หยุดยั้ง!"</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- ก้อนเมฆดอกไม้สไตล์ SpongeBob -->
+  <div class="flower-cloud cloud-1"></div>
+  <div class="flower-cloud cloud-2"></div>
+  <div class="flower-cloud cloud-3"></div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <h3>🧽 SPONGE-PORTFOLIO</h3>
-                <p>โครงงานวิชาคอมพิวเตอร์ ชั้นมัธยมศึกษาปีที่ 3</p>
-            </div>
-            <div class="footer-links">
-                <h4>เมนูลัด</h4>
-                <ul>
-                    <li><a href="index.html">หน้าแรก</a></li>
-                    <li><a href="profile.html">ประวัติส่วนตัว</a></li>
-                    <li><a href="education.html">การศึกษา</a></li>
-                    <li><a href="hobby.html">งานอดิเรก</a></li>
-                    <li><a href="contact.html">ติดต่อ</a></li>
-                </ul>
-            </div>
-            <div class="footer-info">
-                <p>จัดทำโดย: [กรอกชื่อ] ชั้น ม.3/[กรอกห้อง]</p>
-                <p>© 2026 Bikini Bottom Edition. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <!-- แถบการนำทาง NAVBAR -->
+  <nav>
+    <div class="logo">🧽 SPONGE-PORTFOLIO</div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">หน้าแรก</a></li>
+      <li><a href="#">ประวัติส่วนตัว</a></li>
+      <li><a href="#">การศึกษา</a></li>
+      <li><a href="#">งานอดิเรก</a></li>
+      <li><a href="#">ติดต่อ</a></li>
+    </ul>
+  </nav>
+
+  <!-- ส่วน HERO SECTION -->
+  <div class="hero-container">
+    <div class="hero-text">
+      <div class="badge-quote">✨ "I'M READY! I'M READY!" ✨</div>
+      <h1>สวัสดีครับ! ผมชื่อ <span>[กรอกชื่อ]</span></h1>
+      <h3>นักเรียนชั้น ม.3/[กรอกห้อง] | โรงเรียน[กรอกชื่อโรงเรียน]</h3>
+      <p>ยินดีต้อนรับสู่อาณาจักร Portfolio สไตล์ Bikini Bottom แบบเวอร์วังอลังการ! เพียบพร้อมไปด้วยความตั้งใจ ความฝัน และผลงานที่ทำด้วยความสนุกสนาน 🌊✨</p>
+      
+      <div class="btn-group">
+        <button class="btn-primary">รู้จักฉันมากขึ้น 🧽</button>
+        <button class="btn-secondary">ดูงานอดิเรก 🎮</button>
+      </div>
+    </div>
+
+    <!-- ส่วนรูปโปรไฟล์ทรงแปลก -->
+    <div class="profile-card">
+      <div class="tag-fan">🔸 SpongeBob Fan</div>
+      <h2>My Profile</h2>
+      <div class="tag-student">⭐ M.3 Student</div>
+    </div>
+  </div>
+
+  <!-- ส่วน HIGHLIGHT CARDS -->
+  <h2 class="section-title">✨ ไฮไลต์สุดอลังการของผม ✨</h2>
+  <div class="cards-container">
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <h3>วิชาที่ชอบที่สุด</h3>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍍</div>
+      <h3>บ้านหลังที่สอง</h3>
+    </div>
+    <div class="card">
+      <div class="card-icon">🍔</div>
+      <h3>คติประจำใจ</h3>
+    </div>
+  </div>
+
+  <!-- ตัวละคร SPONGEBOB & PATRICK ดุ๊กดิ๊กมุมจอ -->
+  <div class="character spongebob-corner">
+    <img src="https://upload.wikimedia.org/wikipedia/en/3/3b/SpongeBob_SquarePants_character.svg" alt="SpongeBob">
+  </div>
+  <div class="character patrick-corner">
+    <img src="https://upload.wikimedia.org/wikipedia/en/7/7e/Patrick_Star.svg" alt="Patrick Star">
+  </div>
+
+  <!-- JAVASCRIPT สคริปต์สร้างฟองอากาศอัตโนมัติ -->
+  <script>
+    function createBubbles() {
+      const container = document.getElementById('bubbles');
+      const bubbleCount = 20;
+
+      for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        
+        const size = Math.random() * 35 + 10 + 'px';
+        const left = Math.random() * 100 + '%';
+        const delay = Math.random() * 8 + 's';
+        const duration = Math.random() * 6 + 6 + 's';
+
+        bubble.style.width = size;
+        bubble.style.height = size;
+        bubble.style.left = left;
+        bubble.style.animationDelay = delay;
+        bubble.style.animationDuration = duration;
+
+        container.appendChild(bubble);
+      }
+    }
+
+    createBubbles();
+  </script>
 </body>
 </html>
