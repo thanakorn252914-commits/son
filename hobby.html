@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="งานอดิเรกและความสนใจของนักเรียนในธีม SpongeBob">
+  <title>LOTUS QUEST | งานอดิเรก</title>
+  <style>
+    /* 
+       =========================================
+       LOTUS QUEST - HOBBY PAGE (SpongeBob Theme)
+       =========================================
+    */
+
+    /* --- Reset & Defaults --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(180deg, #51e6ff 0%, #3e90ec 60%, #ffe9b5 100%);
+      color: #2b3a4a;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    /* --- Typography --- */
+    h1, h2, h3, .brand {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 3px 3px 0px #3e90ec, 5px 5px 0px #1a518e;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #1a518e;
+      text-shadow: 2px 2px 0px #fff;
+    }
+
+    /* --- Header & Navbar --- */
+    .site-header {
+      background-color: rgba(255, 233, 181, 0.95);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 4px solid #edcc92;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e67e22;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #1a518e;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: #fff;
+      border: 2px solid #edcc92;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #ffcc00;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* --- Hero Section --- */
+    .page-hero {
+      position: relative;
+      padding: 90px 0;
+      text-align: center;
+      background: linear-gradient(180deg, #42cbf5 0%, #3e90ec 100%);
+      border-bottom: 8px solid #ffe9b5;
+      overflow: hidden;
+    }
+
+    .sea-bubbles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#fff 20%, transparent 20%), radial-gradient(#fff 20%, transparent 20%);
+      background-size: 50px 50px;
+      background-position: 0 0, 25px 25px;
+      opacity: 0.15;
+    }
+
+    .floating-flowers {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 15px;
+      animation: float 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    .page-title span {
+      display: inline-block;
+      font-size: 1.1rem;
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      padding: 5px 15px;
+      border-radius: 15px;
+      border: 2px solid #000;
+      margin-bottom: 12px;
+    }
+
+    .page-title p {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-top: 15px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    }
+
+    /* --- Content Section --- */
+    .content-section {
+      padding: 70px 0;
+      background-color: #ffe9b5; /* สีทราย Bikini Bottom */
+    }
+
+    .section-heading.centered {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-heading span {
+      color: #e67e22;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* Hobby Grid Cards */
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .hobby-card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 25px;
+      border: 4px solid #1a518e;
+      box-shadow: 0 8px 0 #1a518e;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 0 #1a518e;
+    }
+
+    /* Card Themes / Colors */
+    .hobby-card.blue { background-color: #e1f5fe; }
+    .hobby-card.purple { background-color: #f3e5f5; }
+    .hobby-card.pink { background-color: #fce4ec; }
+
+    .hobby-icon {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hobby-card span {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1a518e;
+      opacity: 0.5;
+    }
+
+    .hobby-card small {
+      background: #ffcc00;
+      color: #000;
+      font-weight: bold;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      border: 1px solid #000;
+      margin-bottom: 10px;
+    }
+
+    .hobby-card h3 {
+      font-size: 1.5rem;
+      color: #1a518e;
+      margin-bottom: 10px;
+    }
+
+    .hobby-card p {
+      color: #4A5568;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .hobby-line {
+      width: 50px;
+      height: 4px;
+      background: #1a518e;
+      border-radius: 2px;
+      margin-top: 15px;
+    }
+
+    /* --- Passion / Special Quest Section --- */
+    .passion-section {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      padding: 60px 20px;
+      border-top: 6px solid #1a518e;
+      border-bottom: 6px solid #1a518e;
+      text-align: center;
+      position: relative;
+    }
+
+    .passion-copy {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .passion-copy span {
+      background: #ffcc00;
+      color: #000;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-weight: bold;
+      border: 2px solid #000;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .passion-copy h2 {
+      color: #1a518e;
+      margin-bottom: 15px;
+    }
+
+    .passion-copy p {
+      font-size: 1.1rem;
+      color: #2b3a4a;
+      line-height: 1.6;
+      font-weight: bold;
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+      background-color: #edcc92;
+      color: #1a518e;
+      padding: 40px 0 20px;
+      margin-top: auto;
+      border-top: 5px solid #ffcc00;
+      font-weight: bold;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 2px dashed #1a518e;
+    }
+
+    .footer-brand {
+      font-size: 1.3rem;
+      color: #e67e22;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 15px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .footer-top {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body class="hobby-page">
+
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">🪷</span>
+        <span>LOTUS <b>QUEST</b></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">การศึกษา</a>
+        <a class="active" href="hobby.html">งานอดิเรก</a>
+        <a href="contact.html">ติดต่อ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero hobby-hero">
+      <div class="sea-bubbles"></div>
+      <div class="floating-flowers">🌸 ✦ 🪼 ✧ 🌺</div>
+
+      <div class="page-title">
+        <span>CHAPTER 03</span>
+        <h1>MY WORLD</h1>
+        <p>สิ่งเล็ก ๆ ที่ทำให้เวลาว่างใต้ท้องทะเลมีความหมาย 🌊</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-heading centered">
+          <span>MY INTERESTS</span>
+          <h2>สิ่งที่ฉันชอบ</h2>
+          <p>แต่ละความสนใจคืออีกหนึ่งสีสันของตัวฉัน</p>
+        </div>
+
+        <div class="hobby-grid">
+          <article class="hobby-card blue">
+            <div class="hobby-icon">🎮</div>
+            <span>01</span>
+            <small>FUN</small>
+            <h3>เกม</h3>
+            <p>ชอบเล่นเกมเพื่อความสนุก และฝึกการคิดวิเคราะห์</p>
+            <div class="hobby-line"></div>
+          </article>
+
+          <article class="hobby-card purple">
+            <div class="hobby-icon">⚽</div>
+            <span>02</span>
+            <small>ACTIVE</small>
+            <h3>กีฬา</h3>
+            <p>ชอบเล่นกีฬาและทำกิจกรรม ที่ช่วยให้ร่างกายแข็งแรง</p>
+            <div class="hobby-line"></div>
+          </article>
+
+          <article class="hobby-card pink">
+            <div class="hobby-icon">🎵</div>
+            <span>03</span>
+            <small>MOOD</small>
+            <h3>เพลง</h3>
+            <p>ฟังเพลงในเวลาว่าง เพื่อผ่อนคลายและสร้างแรงบันดาลใจ</p>
+            <div class="hobby-line"></div>
+          </article>
+
+          <article class="hobby-card blue">
+            <div class="hobby-icon">🎬</div>
+            <span>04</span>
+            <small>STORY</small>
+            <h3>ภาพยนตร์</h3>
+            <p>ชอบดูภาพยนตร์และซีรีส์ เพื่อความบันเทิง</p>
+            <div class="hobby-line"></div>
+          </article>
+
+          <article class="hobby-card purple">
+            <div class="hobby-icon">💻</div>
+            <span>05</span>
+            <small>CREATE</small>
+            <h3>เทคโนโลยี</h3>
+            <p>สนใจคอมพิวเตอร์ เว็บไซต์ และการสร้างผลงานดิจิทัล</p>
+            <div class="hobby-line"></div>
+          </article>
+
+          <article class="hobby-card pink">
+            <div class="hobby-icon">📷</div>
+            <span>06</span>
+            <small>ART</small>
+            <h3>การถ่ายภาพ</h3>
+            <p>สนใจการถ่ายภาพ และการเก็บช่วงเวลาที่น่าสนใจ</p>
+            <div class="hobby-line"></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="passion-section">
+      <div class="passion-copy">
+        <span>SPECIAL QUEST</span>
+        <h2>สิ่งที่ฉันอยากพัฒนาต่อ</h2>
+        <p>[กรอกความสนใจ] <br>เพราะฉันอยากเรียนรู้ และสร้างผลงานของตัวเองมากขึ้น</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div>
+        <a href="index.html" class="footer-brand">🪷 LOTUS QUEST</a>
+        <p>Student Portfolio • [กรอกชื่อ]</p>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">การศึกษา</a>
+        <a href="hobby.html">งานอดิเรก</a>
+        <a href="contact.html">ติดต่อ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 [กรอกชื่อ] • LOTUS QUEST
+    </div>
+  </footer>
+
+</body>
+</html>
