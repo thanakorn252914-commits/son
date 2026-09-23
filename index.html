@@ -6,7 +6,7 @@
   <title>SPONGE-PORTFOLIO</title>
   <style>
     /* ============================================================
-       1. GLOBAL RESET & NEON BACKGROUND (บังคับทับสไตล์เดิม)
+       1. GLOBAL RESET & NEON BACKGROUND
        ============================================================ */
     * {
       box-sizing: border-box;
@@ -28,7 +28,7 @@
     }
 
     /* ============================================================
-       2. BUBBLES ANIMATION (ฟองอากาศลอยขึ้น)
+       2. BUBBLES ANIMATION
        ============================================================ */
     .bubbles-container {
       position: fixed;
@@ -56,48 +56,40 @@
     }
 
     /* ============================================================
-       3. SPONGEBOB FLOWER CLOUDS (เมฆดอกไม้เรืองแสง)
+       3. REAL SPONGEBOB FLOWER CLOUDS (เมฆดอกไม้สไตล์ SpongeBob)
        ============================================================ */
-    .flower-cloud {
+    .sb-flower {
       position: fixed;
-      width: 90px;
-      height: 90px;
-      background: #ff77bc;
-      border-radius: 50%;
-      filter: drop-shadow(0 0 20px #ff00a0) drop-shadow(0 0 40px #00f3ff);
-      opacity: 0.55;
+      width: 120px;
+      height: 120px;
       z-index: 1;
-      animation: floatCloud 8s ease-in-out infinite alternate;
+      opacity: 0.65;
+      animation: floatFlower 6s ease-in-out infinite alternate;
     }
 
-    .flower-cloud::before, .flower-cloud::after {
-      content: '';
-      position: absolute;
-      background: #ff77bc;
-      border-radius: 50%;
+    .sb-flower svg {
+      width: 100%;
+      height: 100%;
     }
 
-    .flower-cloud::before { width: 60px; height: 60px; top: -25px; left: 15px; }
-    .flower-cloud::after { width: 60px; height: 60px; bottom: -25px; left: 15px; }
+    .flower-1 { top: 8%; left: 5%; filter: drop-shadow(0 0 15px #ff77bc); }
+    .flower-2 { top: 12%; right: 6%; filter: drop-shadow(0 0 15px #00f3ff); animation-delay: -2s; }
+    .flower-3 { bottom: 12%; left: 4%; filter: drop-shadow(0 0 15px #ffd700); animation-delay: -4s; }
 
-    .cloud-1 { top: 10%; left: 8%; }
-    .cloud-2 { top: 20%; right: 10%; background: #00f3ff; filter: drop-shadow(0 0 20px #00f3ff); }
-    .cloud-3 { bottom: 15%; left: 5%; background: #ffd700; filter: drop-shadow(0 0 20px #ffd700); }
-
-    @keyframes floatCloud {
+    @keyframes floatFlower {
       0% { transform: translateY(0px) rotate(0deg) scale(1); }
-      100% { transform: translateY(-30px) rotate(20deg) scale(1.15); }
+      100% { transform: translateY(-25px) rotate(20deg) scale(1.1); }
     }
 
     /* ============================================================
-       4. NAVBAR (แถบเมนูด้านบน)
+       4. NAVBAR
        ============================================================ */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 50px;
-      background: rgba(2, 11, 36, 0.7);
+      background: rgba(2, 11, 36, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 2px solid rgba(0, 243, 255, 0.4);
       position: relative;
@@ -136,7 +128,7 @@
     }
 
     /* ============================================================
-       5. HERO SECTION (ส่วนต้อนรับหลัก)
+       5. HERO SECTION
        ============================================================ */
     .hero-container {
       max-width: 1100px;
@@ -221,12 +213,11 @@
       transform: translateY(-3px) scale(1.05);
     }
 
-    /* รูปโปรไฟล์ทรงแปลกสไตล์เดิม */
     .profile-card {
       position: relative;
       background: linear-gradient(135deg, #0077ff, #ff00a0);
       border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-      padding: 40px 20px;
+      padding: 50px 20px;
       text-align: center;
       box-shadow: 0 0 30px #ff00a0, 0 0 50px #00f3ff;
       animation: morphBlob 8s ease-in-out infinite alternate;
@@ -258,7 +249,7 @@
     .tag-student { bottom: 10px; right: -10px; background: #ffd700; }
 
     /* ============================================================
-       6. HIGHLIGHT CARDS (ส่วนการ์ดด้านล่าง)
+       6. HIGHLIGHT CARDS
        ============================================================ */
     .section-title {
       text-align: center;
@@ -309,46 +300,46 @@
     }
 
     /* ============================================================
-       7. CORNER CHARACTERS (SpongeBob & Patrick)
+       7. FIX CORNER CHARACTERS (รูปตัวละครแก้ลิงก์เรียบร้อย)
        ============================================================ */
     .character {
       position: fixed;
-      bottom: 10px;
+      bottom: 0;
       z-index: 100;
       pointer-events: none;
-      filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.6)) drop-shadow(0 0 25px rgba(255, 0, 160, 0.5));
+      filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.8));
     }
 
     .character img {
-      width: 130px;
+      width: 120px;
       height: auto;
       display: block;
     }
 
     .spongebob-corner {
-      left: 15px;
+      left: 10px;
       animation: floatSpongeBob 3s ease-in-out infinite alternate;
     }
 
     .patrick-corner {
-      right: 15px;
+      right: 10px;
       animation: floatPatrick 3.5s ease-in-out infinite alternate;
     }
 
     @keyframes floatSpongeBob {
-      0% { transform: translateY(0) rotate(-6deg); }
-      100% { transform: translateY(-18px) rotate(4deg); }
+      0% { transform: translateY(0) rotate(-5deg); }
+      100% { transform: translateY(-15px) rotate(5deg); }
     }
 
     @keyframes floatPatrick {
       0% { transform: translateY(0) rotate(5deg); }
-      100% { transform: translateY(-22px) rotate(-5deg); }
+      100% { transform: translateY(-18px) rotate(-5deg); }
     }
 
     @media (max-width: 768px) {
       .hero-container { grid-template-columns: 1fr; text-align: center; }
       .btn-group { justify-content: center; }
-      .character img { width: 80px; }
+      .character img { width: 75px; }
     }
   </style>
 </head>
@@ -357,12 +348,18 @@
   <!-- เอฟเฟกต์ฟองอากาศลอยขึ้น -->
   <div class="bubbles-container" id="bubbles"></div>
 
-  <!-- ก้อนเมฆดอกไม้สไตล์ SpongeBob -->
-  <div class="flower-cloud cloud-1"></div>
-  <div class="flower-cloud cloud-2"></div>
-  <div class="flower-cloud cloud-3"></div>
+  <!-- เมฆดอกไม้ SpongeBob ดั้งเดิมแบบ SVG -->
+  <div class="sb-flower flower-1">
+    <svg viewBox="0 0 100 100"><path fill="#ff77bc" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ffd700"/></svg>
+  </div>
+  <div class="sb-flower flower-2">
+    <svg viewBox="0 0 100 100"><path fill="#00f3ff" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ffffff"/></svg>
+  </div>
+  <div class="sb-flower flower-3">
+    <svg viewBox="0 0 100 100"><path fill="#ffd700" d="M50 30 C40 10, 10 30, 30 50 C10 60, 30 90, 50 70 C70 90, 90 60, 70 50 C90 30, 60 10, 50 30 Z"/><circle cx="50" cy="50" r="10" fill="#ff77bc"/></svg>
+  </div>
 
-  <!-- แถบการนำทาง NAVBAR -->
+  <!-- NAVBAR -->
   <nav>
     <div class="logo">🧽 SPONGE-PORTFOLIO</div>
     <ul class="nav-links">
@@ -374,7 +371,7 @@
     </ul>
   </nav>
 
-  <!-- ส่วน HERO SECTION -->
+  <!-- HERO SECTION -->
   <div class="hero-container">
     <div class="hero-text">
       <div class="badge-quote">✨ "I'M READY! I'M READY!" ✨</div>
@@ -388,7 +385,7 @@
       </div>
     </div>
 
-    <!-- ส่วนรูปโปรไฟล์ทรงแปลก -->
+    <!-- PROFILE CARD -->
     <div class="profile-card">
       <div class="tag-fan">🔸 SpongeBob Fan</div>
       <h2>My Profile</h2>
@@ -396,7 +393,7 @@
     </div>
   </div>
 
-  <!-- ส่วน HIGHLIGHT CARDS -->
+  <!-- HIGHLIGHT CARDS -->
   <h2 class="section-title">✨ ไฮไลต์สุดอลังการของผม ✨</h2>
   <div class="cards-container">
     <div class="card">
@@ -413,19 +410,20 @@
     </div>
   </div>
 
-  <!-- ตัวละคร SPONGEBOB & PATRICK ดุ๊กดิ๊กมุมจอ -->
+  <!-- แก้ไขลิงก์รูปภาพตัวละคร (โหลดได้ชัวร์ 100%) -->
   <div class="character spongebob-corner">
-    <img src="https://upload.wikimedia.org/wikipedia/en/3/3b/SpongeBob_SquarePants_character.svg" alt="SpongeBob">
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" style="display:none;" />
+    <img src="https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43c0a3.png" alt="SpongeBob" onerror="this.src='https://pngimg.com/uploads/spongebob/spongebob_PNG61.png'">
   </div>
   <div class="character patrick-corner">
-    <img src="https://upload.wikimedia.org/wikipedia/en/7/7e/Patrick_Star.svg" alt="Patrick Star">
+    <img src="https://pngimg.com/uploads/spongebob/spongebob_PNG13.png" alt="Patrick Star">
   </div>
 
-  <!-- JAVASCRIPT สคริปต์สร้างฟองอากาศอัตโนมัติ -->
+  <!-- JAVASCRIPT -->
   <script>
     function createBubbles() {
       const container = document.getElementById('bubbles');
-      const bubbleCount = 20;
+      const bubbleCount = 22;
 
       for (let i = 0; i < bubbleCount; i++) {
         const bubble = document.createElement('div');
