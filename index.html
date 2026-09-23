@@ -53,6 +53,55 @@
     }
 
     /* ============================================================
+       MOUSE TRAIL & CLICK EFFECTS (ลูกเล่นเมาส์)
+       ============================================================ */
+    .mouse-bubble {
+      position: fixed;
+      pointer-events: none;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(135, 206, 250, 0.4));
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+      z-index: 9999;
+      animation: floatMouseBubble 1s forwards ease-out;
+    }
+
+    @keyframes floatMouseBubble {
+      0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -60px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .click-ripple {
+      position: fixed;
+      pointer-events: none;
+      border: 3px solid #ffd700;
+      border-radius: 50%;
+      z-index: 9999;
+      animation: rippleEffect 0.5s ease-out forwards;
+    }
+
+    @keyframes rippleEffect {
+      0% {
+        width: 0px;
+        height: 0px;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      100% {
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    /* ============================================================
        2. CONCH STREET HOUSES (บ้าน SVG)
        ============================================================ */
     .houses-container {
@@ -177,7 +226,7 @@
     }
 
     /* ============================================================
-       5. NAVBAR & MULTI-TAB SECTIONS (ส่วนการสลับหน้า)
+       5. NAVBAR & MULTI-TAB SECTIONS
        ============================================================ */
     nav {
       display: flex;
@@ -220,7 +269,6 @@
       text-shadow: none;
     }
 
-    /* ซ่อน/แสดง เนื้อหาแต่ละหน้า */
     .tab-content {
       display: none;
       max-width: 1100px;
@@ -240,7 +288,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* HERO STYLES (หน้าแรก) */
+    /* HERO STYLES */
     .hero-container {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -316,7 +364,7 @@
 
     .profile-card h2 { font-size: 2.2rem; color: #fff; text-shadow: 3px 3px 0px #000; }
 
-    /* CONTENT BOX (กล่องใส่เนื้อหาหน้าอื่นๆ) */
+    /* CONTENT BOX */
     .content-box {
       background: rgba(0, 75, 153, 0.9);
       border: 4px solid #000;
@@ -542,15 +590,12 @@
 
     // ฟังก์ชั่นสลับเปลี่ยนหน้าเมนู
     function switchTab(tabId, btnElement) {
-      // ซ่อนหน้าทั้งหมด
       const tabs = document.querySelectorAll('.tab-content');
       tabs.forEach(tab => tab.classList.remove('active-tab'));
 
-      // เอาสถานะ active ออกจากปุ่มทั้งหมด
       const buttons = document.querySelectorAll('.nav-links button');
       buttons.forEach(btn => btn.classList.remove('active'));
 
-      // แสดงหน้าที่เลือก และไฮไลต์ปุ่มที่กด
       document.getElementById('tab-' + tabId).classList.add('active-tab');
       if (btnElement) {
         btnElement.classList.add('active');
@@ -589,6 +634,52 @@
     }
 
     createBubbles();
+
+    /* ============================================================
+       MOUSE EFFECT SCRIPT (ระบบฟองสบู่และวงน้ำตามเมาส์)
+       ============================================================ */
+    let lastBubbleTime = 0;
+
+    // สร้างฟองสบู่เมื่อลากเมาส์
+    document.addEventListener('mousemove', function(e) {
+      const now = Date.now();
+      // สร้างฟองทุกๆ 50ms เพื่อไม่ให้กินสเปกเครื่องเกินไป
+      if (now - lastBubbleTime > 50) {
+        const bubble = document.createElement('div');
+        bubble.className = 'mouse-bubble';
+        
+        // สุ่มขนาดฟองเมาส์เล็กน้อย
+        const size = Math.random() * 15 + 10 + 'px';
+        bubble.style.width = size;
+        bubble.style.height = size;
+        
+        bubble.style.left = e.clientX + 'px';
+        bubble.style.top = e.clientY + 'px';
+
+        document.body.appendChild(bubble);
+
+        // ลบ Element ออกจากหน้าเว็บเมื่อแสดงผลเสร็จ
+        setTimeout(() => {
+          bubble.remove();
+        }, 1000);
+
+        lastBubbleTime = now;
+      }
+    });
+
+    // สร้างวงน้ำเมื่อกดคลิก
+    document.addEventListener('click', function(e) {
+      const ripple = document.createElement('div');
+      ripple.className = 'click-ripple';
+      ripple.style.left = e.clientX + 'px';
+      ripple.style.top = e.clientY + 'px';
+
+      document.body.appendChild(ripple);
+
+      setTimeout(() => {
+        ripple.remove();
+      }, 500);
+    });
   </script>
 </body>
 </html>
