@@ -6,7 +6,7 @@
   <title>SPONGE-PORTFOLIO</title>
   <style>
     /* ============================================================
-       1. GLOBAL & BIKINI BOTTOM BACKGROUND WITH HOUSES
+       1. GLOBAL & BIKINI BOTTOM BACKGROUND
        ============================================================ */
     * {
       box-sizing: border-box;
@@ -17,7 +17,6 @@
 
     html, body {
       min-height: 100vh;
-      /* พื้นหลังท้องฟ้าใต้น้ำสดใส */
       background: 
         radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
         linear-gradient(180deg, #18b3ff 0%, #0080eb 60%, #004b99 100%) !important;
@@ -27,7 +26,6 @@
       position: relative;
     }
 
-    /* ลำแสงแดดส่องลงใต้น้ำ */
     body::before {
       content: "";
       position: fixed;
@@ -43,43 +41,51 @@
       z-index: 1;
     }
 
-    /* 🍍🗿🪨 บ้านของตัวละครหลักอยู่ด้านหลัง (Conch Street) */
-    .bikini-houses-bg {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 380px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/SpongeBob_SquarePants_Pineapple_House.svg/1200px-SpongeBob_SquarePants_Pineapple_House.svg.png');
-      /* ใช้ SVG สื่อถึงฉากบ้านใต้น้ำ */
-      background: url('https://i.ibb.co/L5Q2p9m/spongebob-street.png') no-repeat center bottom / contain;
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.85;
-      filter: drop-shadow(0 0 20px rgba(0,0,0,0.3));
-    }
-
     /* พื้นทรายใต้น้ำ */
     .sand-floor {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 80px;
+      height: 90px;
       background: #e6c875;
-      border-top: 4px solid #c4a143;
+      border-top: 5px solid #000;
       z-index: 2;
     }
 
     /* ============================================================
-       2. SPONGEBOB INTRO SCREEN (ฉากเปิดเว็บแบบเห็นบ้านด้านหลัง)
+       2. CONCH STREET HOUSES (บ้านวาดด้วย SVG เพียวๆ ไม่มีวันเสีย)
+       ============================================================ */
+    .houses-container {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .house-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ============================================================
+       3. INTRO SCREEN
        ============================================================ */
     #intro-screen {
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(131, 58, 180, 0.75);
-      background: linear-gradient(135deg, rgba(253, 29, 29, 0.8) 0%, rgba(252, 176, 69, 0.8) 50%, rgba(131, 58, 180, 0.8) 100%);
+      background: rgba(253, 29, 29, 0.85);
+      background: linear-gradient(135deg, rgba(253, 29, 29, 0.9) 0%, rgba(252, 176, 69, 0.9) 50%, rgba(131, 58, 180, 0.9) 100%);
       backdrop-filter: blur(8px);
       z-index: 99999;
       display: flex;
@@ -149,7 +155,7 @@
     }
 
     /* ============================================================
-       3. BUBBLES & FLOWER CLOUDS
+       4. BUBBLES & FLOWER CLOUDS
        ============================================================ */
     .bubbles-container {
       position: fixed;
@@ -178,7 +184,7 @@
 
     .sb-flower {
       position: fixed;
-      width: 110px; height: 110px;
+      width: 100px; height: 100px;
       z-index: 3; opacity: 0.85;
       animation: floatFlower 6s ease-in-out infinite alternate;
     }
@@ -192,7 +198,7 @@
     }
 
     /* ============================================================
-       4. NAVBAR & CONTENT
+       5. NAVBAR & CONTENT
        ============================================================ */
     nav {
       display: flex;
@@ -340,9 +346,7 @@
     .tag-fan { top: 10px; left: -10px; }
     .tag-student { bottom: 10px; right: -10px; background: #ffd700; }
 
-    /* ============================================================
-       5. HIGHLIGHT CARDS
-       ============================================================ */
+    /* HIGHLIGHT CARDS */
     .section-title {
       text-align: center;
       margin: 30px 0 20px;
@@ -355,7 +359,7 @@
 
     .cards-container {
       max-width: 1100px;
-      margin: 0 auto 100px;
+      margin: 0 auto 120px;
       padding: 0 20px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -376,32 +380,66 @@
     .card-icon { font-size: 2.8rem; margin-bottom: 10px; }
     .card h3 { color: #ffd700; text-shadow: 2px 2px 0px #000; }
 
-    /* ============================================================
-       6. CORNER CHARACTERS
-       ============================================================ */
-    .character {
-      position: fixed;
-      bottom: 20px;
-      z-index: 100;
-      pointer-events: none;
-      filter: drop-shadow(4px 4px 0px #000);
-    }
-
-    .character img { width: 120px; height: auto; display: block; }
-    .spongebob-corner { left: 15px; }
-    .patrick-corner { right: 15px; }
-
     @media (max-width: 768px) {
       .hero-container { grid-template-columns: 1fr; text-align: center; }
       .btn-group { justify-content: center; }
-      .character img { width: 80px; }
+      .houses-container svg { scale: 0.7; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 🍍🗿🪨 ภาพบ้านใต้น้ำด้านหลัง และพื้นทราย -->
-  <div class="bikini-houses-bg"></div>
+  <!-- 🏠 บ้านตัวละครหลักทั้ง 3 หลัง (SpongeBob, Squidward, Patrick) วาดด้วย SVG -->
+  <div class="houses-container">
+    <!-- 1. บ้านหิน Patrick -->
+    <div class="house-item">
+      <svg width="120" height="110" viewBox="0 0 120 110">
+        <!-- ก้อนหินโค้งมน -->
+        <path d="M 10 100 Q 15 20, 60 20 Q 105 20, 110 100 Z" fill="#8B4513" stroke="#000" stroke-width="5"/>
+        <!-- กังหันสภาพอากาศด้านบน -->
+        <line x1="60" y1="20" x2="60" y2="5" stroke="#000" stroke-width="4"/>
+        <path d="M 40 5 L 80 5" stroke="#000" stroke-width="4"/>
+        <circle cx="40" cy="5" r="5" fill="#ff0000" stroke="#000" stroke-width="2"/>
+        <circle cx="80" cy="5" r="5" fill="#ff0000" stroke="#000" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- 2. บ้านโมไอ Squidward -->
+    <div class="house-item">
+      <svg width="130" height="180" viewBox="0 0 130 180">
+        <!-- ตัวบ้านทรงโมไอ -->
+        <rect x="25" y="30" width="80" height="140" rx="20" fill="#4682B4" stroke="#000" stroke-width="5"/>
+        <!-- ตาซ้าย-ขวา -->
+        <rect x="35" y="60" width="22" height="25" fill="#ffd700" stroke="#000" stroke-width="4"/>
+        <rect x="73" y="60" width="22" height="25" fill="#ffd700" stroke="#000" stroke-width="4"/>
+        <!-- จมูกโมไอยาวๆ -->
+        <rect x="53" y="70" width="24" height="60" fill="#3a6d96" stroke="#000" stroke-width="4"/>
+        <!-- ประตูวงกลม -->
+        <circle cx="65" cy="145" r="18" fill="#555" stroke="#000" stroke-width="4"/>
+      </svg>
+    </div>
+
+    <!-- 3. บ้านสับปะรด SpongeBob -->
+    <div class="house-item">
+      <svg width="150" height="210" viewBox="0 0 150 210">
+        <!-- ใบไม้สับปะรดด้านบน -->
+        <path d="M 75 40 Q 40 10, 20 25 Q 50 45, 65 50" fill="#2e8b57" stroke="#000" stroke-width="4"/>
+        <path d="M 75 40 Q 110 10, 130 25 Q 100 45, 85 50" fill="#2e8b57" stroke="#000" stroke-width="4"/>
+        <path d="M 75 40 Q 75 0, 75 50" fill="#3cb371" stroke="#000" stroke-width="4"/>
+        <!-- ลูกสับปะรด -->
+        <ellipse cx="75" cy="120" rx="55" ry="75" fill="#ff8c00" stroke="#000" stroke-width="5"/>
+        <!-- ลายตารางสับปะรด -->
+        <path d="M 35 80 L 115 160 M 35 160 L 115 80 M 30 120 L 120 120" stroke="#d2691e" stroke-width="3"/>
+        <!-- หน้าต่างพอร์ทโฮล (หน้าต่างเรือ) -->
+        <circle cx="50" cy="100" r="14" fill="#00f3ff" stroke="#000" stroke-width="4"/>
+        <circle cx="100" cy="130" r="12" fill="#00f3ff" stroke="#000" stroke-width="4"/>
+        <!-- ประตูทางเข้า -->
+        <path d="M 60 195 L 60 160 A 15 15 0 0 1 90 160 L 90 195 Z" fill="#708090" stroke="#000" stroke-width="4"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- พื้นทรายใต้น้ำ -->
   <div class="sand-floor"></div>
 
   <!-- 🎬 ฉากเปิดเว็บ INTRO SCREEN -->
@@ -473,14 +511,6 @@
       <div class="card-icon">🍔</div>
       <h3>คติประจำใจ</h3>
     </div>
-  </div>
-
-  <!-- ตัวละคร SPONGEBOB & PATRICK -->
-  <div class="character spongebob-corner">
-    <img src="https://assets.stickpng.com/thumbs/580b57fbd9996e24bc43c0a3.png" alt="SpongeBob" onerror="this.src='https://pngimg.com/uploads/spongebob/spongebob_PNG61.png'">
-  </div>
-  <div class="character patrick-corner">
-    <img src="https://pngimg.com/uploads/spongebob/spongebob_PNG13.png" alt="Patrick Star">
   </div>
 
   <!-- JAVASCRIPT -->
