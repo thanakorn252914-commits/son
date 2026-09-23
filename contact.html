@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ช่องทางติดต่อของนักเรียนในธีม SpongeBob">
+  <title>LOTUS QUEST | ติดต่อ</title>
+  <style>
+    /* 
+       =========================================
+       LOTUS QUEST - CONTACT PAGE (SpongeBob Theme)
+       =========================================
+    */
+
+    /* --- Reset & Defaults --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      /* ธีมหลักเป็นพื้นหลังน้ำทะเลและทราย */
+      background: linear-gradient(180deg, #51e6ff 0%, #3e90ec 60%, #ffe9b5 100%);
+      color: #333;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* --- Typography with Wobbly Font Effect --- */
+    @font-face {
+      font-family: 'Wobbly Font';
+      /* คุณสามารถแทนที่ที่นี่ด้วย URL ฟอนต์จริง หรือลบออกหากไม่ต้องการใช้ */
+      src: url('https://fonts.cdnfonts.com/s/72225/ComicRunes.woff') format('woff');
+    }
+
+    h1, h2, h3, .brand {
+      font-family: 'Wobbly Font', 'Comic Sans MS', cursive, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* --- Buttons --- */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 2px solid;
+    }
+
+    .btn-light {
+      background-color: #ffe9b5; /* สีทราย */
+      color: #3e90ec; /* สีน้ำทะเล */
+      border-color: #3e90ec;
+    }
+
+    .btn-light:hover {
+      background-color: #fff;
+      color: #2a6fcc;
+    }
+
+    /* --- Header & Navbar --- */
+    .site-header {
+      background-color: rgba(255, 233, 181, 0.9); /* สีทรายโปร่งแสง */
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #edcc92;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      color: #3e90ec;
+    }
+
+    .brand-mark {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-size: 1rem;
+      color: #3e90ec;
+      padding: 5px 10px;
+      border-radius: 15px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #ffe08a; /* สีทรายเข้ม */
+      color: #fff;
+    }
+
+    /* --- Hero Section --- */
+    .page-hero {
+      position: relative;
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(180deg, #6ae7ff 0%, #3e90ec 100%);
+      border-bottom: 10px solid #ffe9b5;
+    }
+
+    /* Spongebob Themed Background Elements */
+    .sea-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#fff 1px, transparent 1px),
+                        radial-gradient(#fff 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+      opacity: 0.1;
+    }
+
+    .flower-cloud {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 C60 10 90 10 100 50 C90 90 60 90 50 100 C40 90 10 90 0 50 C10 10 40 10 50 0 Z" fill="%23fff" opacity="0.3"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .fc1 { top: 10%; left: 15%; animation: float 6s infinite alternate; }
+    .fc2 { top: 20%; right: 20%; animation: float 8s infinite alternate-reverse; }
+
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(10px, -10px); }
+    }
+
+    .jellyfish {
+      position: absolute;
+      font-size: 3rem;
+      opacity: 0.5;
+      animation: jelly 4s infinite;
+    }
+
+    .jf1 { bottom: 15%; left: 10%; animation-delay: 0.5s; }
+    .jf2 { bottom: 25%; right: 15%; animation-delay: 1.5s; }
+
+    @keyframes jelly {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .page-title span {
+      display: block;
+      font-size: 1.2rem;
+      color: #ffe9b5;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .page-title p {
+      font-size: 1.3rem;
+      color: #fff;
+      max-width: 600px;
+      margin: 20px auto 0;
+      line-height: 1.6;
+    }
+
+    /* --- Content Section --- */
+    .content-section {
+      padding: 80px 0;
+      background-color: #ffe9b5; /* สีทราย */
+    }
+
+    .section-heading {
+      margin-bottom: 60px;
+    }
+
+    .section-heading.centered {
+      text-align: center;
+    }
+
+    .section-heading span {
+      display: block;
+      color: #edcc92;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      color: #3e90ec;
+      text-shadow: none;
+    }
+
+    .section-heading p {
+      color: #7a6e5a;
+      max-width: 500px;
+      margin: 15px auto 0;
+    }
+
+    /* Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .contact-card {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 30px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      border: 4px solid #edcc92;
+      box-shadow: 0 10px 0 #edcc92; /* เอฟเฟกต์การ์ตูน */
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 0 #edcc92;
+    }
+
+    .contact-icon {
+      font-size: 4rem;
+      color: #3e90ec;
+    }
+
+    .contact-card span {
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #ffe08a;
+    }
+
+    .contact-card h3 {
+      font-size: 1.8rem;
+      color: #3e90ec;
+    }
+
+    .contact-card strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #333;
+      margin-top: 5px;
+    }
+
+    .contact-card small {
+      display: block;
+      color: #3e90ec;
+      margin-top: auto;
+      font-weight: bold;
+    }
+
+    /* Card Themes */
+    .card-pineapple { background-color: #fffed1; } /* สีเหลืองสับปะรด */
+    .card-rock { background-color: #e6e6e6; } /* สีเทาหิน */
+    .card-bubble { background-color: #f0faff; } /* สีฟ้าอ่อน */
+
+    /* --- Finale Section --- */
+    .contact-finale {
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(0deg, #51e6ff 0%, #3e90ec 100%);
+      border-top: 10px solid #ffe9b5;
+    }
+
+    .finale-flower {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 C60 10 90 10 100 50 C90 90 60 90 50 100 C40 90 10 90 0 50 C10 10 40 10 50 0 Z" fill="%23fff" opacity="0.4"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .ff1 { top: -20px; left: -20px; animation: rotate 10s infinite linear; }
+    .ff2 { bottom: -20px; right: -20px; animation: rotate 12s infinite linear-reverse; }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .gary {
+      position: absolute;
+      font-size: 4rem;
+      animation: crawl 8s infinite alternate;
+    }
+
+    .g1 { bottom: 10%; right: 5%; }
+
+    @keyframes crawl {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-30px); }
+    }
+
+    .final-copy span {
+      display: block;
+      color: #ffe9b5;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .final-copy p {
+      font-size: 1.3rem;
+      color: #fff;
+      max-width: 600px;
+      margin: 20px auto 30px;
+      line-height: 1.6;
+    }
+
+    /* --- Footer --- */
+    .site-footer {
+      background-color: #edcc92; /* สีทรายเข้ม */
+      color: #fff;
+      padding: 50px 0 30px;
+      margin-top: auto;
+      border-top: 5px solid #ffe08a;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .footer-brand {
+      font-size: 1.3rem;
+      color: #3e90ec;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .footer-top p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-nav a {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .footer-nav a:hover {
+      opacity: 1;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+
+  </style>
+</head>
+
+<body class="contact-page">
+
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">🪷</span>
+        <span>LOTUS <b>QUEST</b></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">การศึกษา</a>
+        <a href="hobby.html">งานอดิเรก</a>
+        <a class="active" href="contact.html">ติดต่อ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero contact-hero">
+      <div class="sea-background"></div>
+      <div class="flower-cloud fc1"></div>
+      <div class="flower-cloud fc2"></div>
+      <div class="jellyfish jf1">🪼</div>
+      <div class="jellyfish jf2">🪼</div>
+
+      <div class="page-title">
+        <span>FINAL CHAPTER</span>
+        <h1>CONNECT</h1>
+        <p>ขอบคุณที่เดินทางมาถึงบทสุดท้าย</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-heading centered">
+          <span>LET'S CONNECT</span>
+          <h2>สามารถติดต่อฉันได้ที่</h2>
+          <p>เลือกช่องทางที่สะดวกได้เลย</p>
+        </div>
+
+        <div class="contact-grid">
+          <a href="mailto:example@email.com" class="contact-card card-pineapple">
+            <div class="contact-icon">✉</div>
+            <span>PORTAL 01</span>
+            <h3>EMAIL</h3>
+            <strong>example@email.com</strong>
+            <small>ส่งอีเมลถึงฉัน →</small>
+          </a>
+
+          <article class="contact-card card-rock">
+            <div class="contact-icon">🌐</div>
+            <span>PORTAL 02</span>
+            <h3>WEBSITE</h3>
+            <strong>My Student Portfolio</strong>
+            <small>เว็บไซต์แนะนำตัวของฉัน</small>
+          </article>
+
+          <article class="contact-card card-bubble">
+            <div class="contact-icon">📱</div>
+            <span>PORTAL 03</span>
+            <h3>SOCIAL</h3>
+            <strong>[กรอกช่องทางติดต่อ]</strong>
+            <small>[กรอกข้อมูลเพิ่มเติม]</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-finale">
+      <div class="finale-flower ff1"></div>
+      <div class="finale-flower ff2"></div>
+      <div class="gary g1">🐌</div>
+
+      <div class="final-copy">
+        <span>THANK YOU</span>
+        <h2>เรื่องราวยังไม่จบแค่นี้</h2>
+        <p>ขอบคุณที่เข้ามาทำความรู้จักกับโลกเล็ก ๆ ของฉัน</p>
+        <a href="index.html" class="btn btn-light">กลับหน้าแรก <b>↗</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top container">
+      <div>
+        <a href="index.html" class="footer-brand">🪷 LOTUS QUEST</a>
+        <p>Student Portfolio • [กรอกชื่อของคุณที่นี่]</p>
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">หน้าแรก</a>
+        <a href="profile.html">ประวัติส่วนตัว</a>
+        <a href="education.html">การศึกษา</a>
+        <a href="hobby.html">งานอดิเรก</a>
+        <a href="contact.html">ติดต่อ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 [กรอกชื่อของคุณที่นี่] • LOTUS QUEST
+    </div>
+  </footer>
+
+</body>
+</html>
