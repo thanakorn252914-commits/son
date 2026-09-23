@@ -24,7 +24,7 @@
       position: relative;
     }
 
-    /* ☀️ ลำแสงอาทิตย์ส่องจากผิวน้ำ (Sun Rays / Caustics Effect) */
+    /* ☀️ ลำแสงอาทิตย์ส่องจากผิวน้ำ */
     body::before {
       content: "";
       position: fixed;
@@ -47,7 +47,7 @@
       100% { opacity: 0.9; transform: scaleX(1.1) translateX(20px); }
     }
 
-    /* 🏜️ เนินทรายและพื้นทราย multi-layer */
+    /* 🏜️ เนินทรายและพื้นทราย */
     .sand-floor {
       position: fixed;
       bottom: 0;
@@ -71,7 +71,7 @@
       z-index: 2;
     }
 
-    /* 🪸 ปะการังและสาหร่ายตกแต่งด้านล่าง */
+    /* 🪸 ปะการังและสาหร่าย */
     .sea-decor {
       position: fixed;
       bottom: 80px;
@@ -96,7 +96,7 @@
       100% { transform: rotate(8deg); }
     }
 
-    /* 🪼 แมงกะพรุนลอยแบบดุ๊กดิ๊ก */
+    /* 🪼 แมงกะพรุน */
     .jellyfish-container {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -149,7 +149,7 @@
     }
 
     /* ============================================================
-       2. CONCH STREET HOUSES (บ้าน SVG ทั้ง 3 หลัง)
+       2. CONCH STREET HOUSES
        ============================================================ */
     .houses-container {
       position: fixed;
@@ -390,23 +390,42 @@
     .btn-primary { background: #ffd700; color: #000; }
     .btn-secondary { background: #ff77bc; color: #fff; text-shadow: 1px 1px 0px #000; }
 
+    /* ============================================================
+       PROFILE CARD WITH IMAGE (กรอบโปรไฟล์พร้อมรูปภาพ)
+       ============================================================ */
     .profile-card {
       position: relative;
+      width: 100%;
+      max-width: 320px;
+      height: 380px;
+      margin: 0 auto;
       background: linear-gradient(135deg, #0080eb, #ff77bc);
-      border: 4px solid #000;
+      border: 6px solid #000;
       border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-      padding: 50px 20px;
-      text-align: center;
-      box-shadow: 8px 8px 0px #000;
+      overflow: hidden;
+      box-shadow: 10px 10px 0px #000;
       animation: morphBlob 8s ease-in-out infinite alternate;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.4s ease;
+    }
+
+    .profile-card:hover img {
+      transform: scale(1.08);
     }
 
     @keyframes morphBlob {
       0% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
       100% { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
     }
-
-    .profile-card h2 { font-size: 2.2rem; color: #fff; text-shadow: 3px 3px 0px #000; }
 
     .content-box {
       background: rgba(0, 51, 102, 0.9);
@@ -451,7 +470,7 @@
 </head>
 <body>
 
-  <!-- 🪼 แมงกะพรุนลอยตกแต่งพื้นหลัง -->
+  <!-- 🪼 แมงกะพรุน -->
   <div class="jellyfish-container">
     <svg class="jellyfish" style="top: 15%; left: 8%; width: 60px;" viewBox="0 0 100 120">
       <path d="M 20 60 Q 50 0, 80 60 Q 50 70, 20 60 Z" fill="#ff77bc" stroke="#000" stroke-width="4"/>
@@ -463,9 +482,8 @@
     </svg>
   </div>
 
-  <!-- 🏠 บ้าน SVG ทั้ง 3 หลัง (คงเดิมเรียบร้อย) -->
+  <!-- 🏠 บ้านทั้ง 3 หลัง -->
   <div class="houses-container">
-    <!-- บ้าน Patrick (หอยเชลล์) -->
     <div class="house-item">
       <svg width="120" height="110" viewBox="0 0 120 110">
         <path d="M 10 100 Q 15 20, 60 20 Q 105 20, 110 100 Z" fill="#8B4513" stroke="#000" stroke-width="5"/>
@@ -475,7 +493,6 @@
         <circle cx="80" cy="5" r="5" fill="#ff0000" stroke="#000" stroke-width="2"/>
       </svg>
     </div>
-    <!-- บ้าน Squidward (โมอาย) -->
     <div class="house-item">
       <svg width="130" height="180" viewBox="0 0 130 180">
         <rect x="25" y="30" width="80" height="140" rx="20" fill="#4682B4" stroke="#000" stroke-width="5"/>
@@ -485,7 +502,6 @@
         <circle cx="65" cy="145" r="18" fill="#555" stroke="#000" stroke-width="4"/>
       </svg>
     </div>
-    <!-- บ้าน SpongeBob (สับปะรด) -->
     <div class="house-item">
       <svg width="150" height="210" viewBox="0 0 150 210">
         <path d="M 75 40 Q 40 10, 20 25 Q 50 45, 65 50" fill="#2e8b57" stroke="#000" stroke-width="4"/>
@@ -500,7 +516,7 @@
     </div>
   </div>
 
-  <!-- 🪸 ปะการังและสาหร่ายตกแต่งหน้าบ้าน -->
+  <!-- 🪸 สาหร่าย -->
   <div class="sea-decor">
     <svg class="seaweed" width="50" height="90" viewBox="0 0 50 90">
       <path d="M 10 90 Q 30 60, 10 30 Q 0 10, 20 0 Q 30 20, 20 50 Z" fill="#2e8b57" stroke="#000" stroke-width="3"/>
@@ -551,8 +567,9 @@
         </div>
       </div>
 
+      <!-- 🖼️ กรอบรูปภาพโปรไฟล์ -->
       <div class="profile-card">
-        <h2>My Profile</h2>
+        <img src="image_5d30c3.jpg" alt="Profile Picture">
       </div>
     </div>
 
