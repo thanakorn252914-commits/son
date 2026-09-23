@@ -1,0 +1,639 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="SPONGEBOB PORTFOLIO - Student Portfolio"><title>SPONGEBOB PORTFOLIO</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Kanit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --sponge-yellow: #FFF017;
+  --sponge-shadow: #E8A800;
+  --patrick-pink: #FF6B8B;
+  --ocean-blue: #00A6FF;
+  --deep-ocean: #002B5B;
+  --ocean-teal: #14D5FF;
+  --plankton-green: #2ECC71;
+  --mrkrabs-red: #FF4747;
+  --white: #ffffff;
+  --soft-yellow: #FFF8B5;
+  --muted-blue: #8AB4F8;
+  --glass: rgba(0, 43, 91, 0.7);
+  --line: rgba(20, 213, 255, 0.3);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family: 'Kanit', sans-serif;
+  color: var(--white);
+  background: radial-gradient(circle at 50% 0%, #0077C8 0%, #004080 50%, #001A33 100%);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+a{color:inherit}
+
+/* SpongeBob Flower Clouds Background */
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255, 240, 23, 0.12), transparent 25%),
+    radial-gradient(circle at 85% 25%, rgba(255, 107, 139, 0.15), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(20, 213, 255, 0.15), transparent 35%);
+  z-index:-2;
+}
+
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#001A33}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--sponge-yellow), var(--ocean-teal));border-radius:20px}
+
+/* Mouse Effects - Bubbles & Starfish */
+#mouseGlow{
+  position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(20,213,255,0.25), rgba(255,240,23,0.15) 40%, transparent 70%);
+  filter:blur(8px);mix-blend-mode:screen;
+}
+.mouse-star{
+  position:fixed;pointer-events:none;z-index:99998;color:var(--sponge-yellow);font-size:14px;
+  text-shadow:0 0 10px var(--sponge-yellow), 0 0 15px var(--patrick-pink);
+  animation:mouseStar .8s ease-out forwards;
+}
+.click-ripple{
+  position:fixed;width:20px;height:20px;border-radius:50%;border:3px solid var(--ocean-teal);
+  pointer-events:none;z-index:99997;transform:translate(-50%,-50%);
+  box-shadow:0 0 15px var(--ocean-teal), 0 0 25px var(--sponge-yellow);
+  animation:clickRipple .9s ease-out forwards;
+}
+@keyframes mouseStar{0%{opacity:1;transform:scale(.4)}100%{opacity:0;transform:translate(var(--mx),var(--my)) scale(1.6) rotate(180deg)}}
+@keyframes clickRipple{0%{width:10px;height:10px;opacity:1}100%{width:160px;height:160px;opacity:0}}
+
+/* Underwater Bubbles */
+.bubbles-container{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.bubble{
+  position:absolute;bottom:-50px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(20,213,255,0.2) 60%, rgba(255,255,255,0.5));
+  border:1px solid rgba(255,255,255,0.6);border-radius:50%;
+  box-shadow:0 0 10px rgba(20,213,255,0.4);
+  animation:bubbleRise var(--duration) linear infinite;
+}
+@keyframes bubbleRise{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  20%{opacity:0.8}
+  80%{opacity:0.8}
+  100%{transform:translateY(-120vh) translateX(var(--bounce));opacity:0}
+}
+
+/* Header & Nav */
+.site-header{position:fixed;top:18px;left:0;width:100%;z-index:1000}
+.navbar{
+  width:min(1180px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 24px;border:2px solid var(--sponge-yellow);border-radius:35px;
+  background:rgba(0, 43, 91, 0.75);backdrop-filter:blur(18px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,240,23,0.2);
+}
+.logo{
+  display:flex;align-items:center;gap:12px;text-decoration:none;
+  font-family:'Fredoka One', cursive;font-size:22px;color:var(--sponge-yellow);
+  text-shadow: 2px 2px 0px #000;
+}
+.logo-icon{
+  width:40px;height:40px;display:grid;place-items:center;border-radius:12px;
+  font-size:20px;background:linear-gradient(135deg, var(--sponge-yellow), var(--sponge-shadow));
+  color:#000;box-shadow:0 0 15px rgba(255,240,23,0.6);font-weight:700;
+}
+.logo strong{display:block;font-family:'Kanit',sans-serif;font-size:10px;letter-spacing:3px;color:var(--ocean-teal)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{
+  position:relative;text-decoration:none;color:#D1F0FF;font-size:14px;font-weight:500;transition:.3s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--sponge-yellow);text-shadow:0 0 10px var(--sponge-yellow)}
+.nav-links a:after{
+  content:"";position:absolute;left:50%;bottom:-6px;width:0;height:3px;
+  transform:translateX(-50%);background:var(--sponge-yellow);border-radius:2px;
+  box-shadow:0 0 8px var(--sponge-yellow);transition:.3s;
+}
+.nav-links a:hover:after,.nav-links a.active:after{width:100%}
+
+/* Page Layout */
+.page-wrap{position:relative;z-index:5}
+.page-hero{
+  min-height:60vh;padding:160px 6% 70px;display:grid;place-items:center;text-align:center;
+  position:relative;overflow:hidden;
+}
+.page-kicker{color:var(--sponge-yellow);letter-spacing:4px;font-size:12px;font-weight:600}
+.page-hero h1{font-family:'Fredoka One', cursive;font-size:clamp(45px,7vw,85px);margin-top:10px;color:var(--white);text-shadow: 3px 3px 0px #000}
+.page-hero h1 span{color:var(--sponge-yellow)}
+.page-hero p{margin-top:16px;color:#B0E0FF;max-width:680px;line-height:1.9;font-size:16px}
+
+/* Content & Glass Cards */
+.content-section{padding:30px 6% 100px}
+.content-grid{width:min(1120px,100%);margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.glass-card{
+  position:relative;overflow:hidden;border:2px solid var(--line);
+  background:rgba(0, 32, 70, 0.65);backdrop-filter:blur(16px);border-radius:28px;
+  padding:32px;box-shadow:0 15px 40px rgba(0,0,0,0.3);transition:.4s;
+}
+.glass-card:hover{
+  transform:translateY(-6px);border-color:var(--sponge-yellow);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4), 0 0 25px rgba(255,240,23,0.25);
+}
+.glass-card h2,.glass-card h3{font-family:'Fredoka One', cursive;color:var(--sponge-yellow);letter-spacing:1px}
+.glass-card h2{font-size:32px}.glass-card h3{font-size:22px}
+.glass-card p{color:#D0EAFF;line-height:1.9;margin-top:12px}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{
+  padding:8px 15px;border-radius:999px;border:1px solid var(--ocean-teal);
+  background:rgba(20,213,255,0.15);font-size:12px;color:var(--sponge-yellow);font-weight:500;
+}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.stat{
+  padding:16px;text-align:center;border-radius:20px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+}
+.stat strong{display:block;color:var(--patrick-pink);font-family:'Fredoka One';font-size:28px}
+.stat span{display:block;margin-top:5px;color:#A0D0FF;font-size:10px;letter-spacing:2px}
+
+/* Timeline */
+.timeline{position:relative;margin-top:26px;padding-left:22px;border-left:2px dashed var(--ocean-teal)}
+.timeline-item{position:relative;padding:0 0 28px 20px}
+.timeline-item:before{
+  content:"🧽";position:absolute;left:-35px;top:0;font-size:18px;
+  filter:drop-shadow(0 0 8px var(--sponge-yellow));
+}
+.timeline-item small{color:var(--sponge-yellow);letter-spacing:2px;font-weight:600}
+.timeline-item h3{margin-top:5px;color:#fff}.timeline-item p{font-size:14px;color:#B5E0FF}
+
+/* Interests / Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.interest{
+  min-height:210px;position:relative;overflow:hidden;border-radius:24px;padding:24px;
+  border:2px solid rgba(20,213,255,0.3);
+  background:linear-gradient(145deg, rgba(0,166,255,0.2), rgba(255,107,139,0.15));
+  transition:.45s;
+}
+.interest:hover{
+  transform:translateY(-8px);border-color:var(--sponge-yellow);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(255,240,23,0.3);
+}
+.interest .glyph{font-size:36px;filter:drop-shadow(0 0 10px rgba(255,240,23,0.5))}
+.interest h3{margin-top:15px;font-family:'Fredoka One';font-size:24px;color:var(--sponge-yellow)}
+.interest p{margin-top:8px;color:#C2E5FF;line-height:1.7;font-size:13px}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;width:min(1100px,100%);margin:auto}
+.contact-item{
+  display:flex;gap:15px;padding:18px;border-radius:20px;
+  border:1px solid rgba(20,213,255,0.2);background:rgba(255,255,255,0.04);margin-top:12px;
+}
+.contact-icon{
+  width:46px;height:46px;border-radius:15px;display:grid;place-items:center;
+  background:linear-gradient(135deg, var(--sponge-yellow), var(--patrick-pink));
+  color:#000;font-size:20px;box-shadow:0 0 10px rgba(255,240,23,0.4);
+}
+.contact-item small{color:#90C0FF;display:block}
+.contact-item strong{font-size:15px;color:#fff}
+.quote{font-family:'Fredoka One', cursive;font-size:26px;line-height:1.4;color:#fff}
+.quote em{color:var(--sponge-yellow);font-style:normal}
+
+/* Footer */
+.footer{
+  position:relative;text-align:center;padding:60px 20px 28px;
+  border-top:2px solid rgba(20,213,255,0.2);background:#00142A;
+}
+.footer-icon{font-size:40px;margin-bottom:10px;filter:drop-shadow(0 0 10px var(--sponge-yellow))}
+.footer h3{font-family:'Fredoka One';font-size:24px;color:var(--sponge-yellow)}
+.footer p{color:#75A0D0;margin-top:5px;font-size:14px}
+.footer-links{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin:25px 0}
+.footer-links a{color:#90C0FF;text-decoration:none;font-size:13px;transition:.3s}
+.footer-links a:hover{color:var(--sponge-yellow)}
+
+/* Music Dock */
+.music-dock{
+  position:fixed;right:18px;bottom:18px;width:320px;z-index:9990;
+  border:2px solid var(--sponge-yellow);border-radius:22px;padding:14px;
+  background:rgba(0, 32, 70, 0.9);backdrop-filter:blur(20px);
+  box-shadow:0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,240,23,0.2);
+}
+.music-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:8px}
+.music-head strong{display:block;font-size:13px;color:var(--sponge-yellow)}
+.music-head small{display:block;font-size:10px;color:#90C0FF}
+.yt-link{
+  font-size:11px;color:#000;font-weight:600;text-decoration:none;padding:6px 12px;
+  border-radius:12px;background:var(--sponge-yellow);transition:.3s;white-space:nowrap;
+  box-shadow:0 0 10px rgba(255,240,23,0.4);
+}
+.yt-link:hover{transform:scale(1.05);background:#fff}
+.track-title{font-family:'Fredoka One';font-size:18px;color:#fff;margin:4px 0 10px}
+.site-audio{width:100%;height:36px;border-radius:10px}
+
+/* Opening Screen - SpongeBob Theme */
+.opening-control{display:none}
+.opening-screen{
+  position:fixed;inset:0;z-index:50000;display:flex;justify-content:center;align-items:center;
+  overflow:hidden;background:#001122;transition:opacity 1s ease,visibility 1s ease,transform 1s ease;
+}
+#opening-control:checked~.opening-screen{opacity:0;visibility:hidden;transform:scale(1.1);pointer-events:none}
+.opening-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%, #0077C8 0%, #004080 60%, #001A33 100%);
+}
+
+/* Pineapple House Hero Element */
+.pineapple-house {
+  position: relative; width: 140px; height: 180px; margin: 0 auto 20px;
+  background: linear-gradient(135deg, #FF9900, #FF5500);
+  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+  border: 4px solid #000;
+  box-shadow: 0 0 30px rgba(255, 153, 0, 0.6), inset -10px -10px 0px rgba(0,0,0,0.2);
+  animation: pineappleFloat 4s ease-in-out infinite;
+}
+/* Pineapple Leaves */
+.pineapple-house::before {
+  content: "🌿"; position: absolute; top: -45px; left: 50%; transform: translateX(-50%);
+  font-size: 55px; filter: drop-shadow(0 0 10px #2ECC71);
+}
+/* Pineapple Door & Porthole */
+.pineapple-door {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 40px; height: 65px; background: #7f8c8d; border: 3px solid #000;
+  border-radius: 20px 20px 0 0;
+}
+.pineapple-window {
+  position: absolute; top: 40px; right: 25px; width: 30px; height: 30px;
+  background: #3498db; border: 3px solid #000; border-radius: 50%;
+  box-shadow: inset 0 0 8px #fff;
+}
+@keyframes pineappleFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+
+.opening-content{position:relative;z-index:5;text-align:center}
+.opening-small{color:var(--sponge-yellow);letter-spacing:5px;font-size:13px;font-weight:600}
+.opening-content h1{
+  margin-top:10px;font-family:'Fredoka One', cursive;font-size:clamp(50px,9vw,100px);
+  color:var(--sponge-yellow);text-shadow: 4px 4px 0px #000, 0 0 30px rgba(255,240,23,0.5);
+  line-height:0.95;
+}
+.opening-content h1 span{display:block;font-size:0.45em;letter-spacing:6px;color:var(--ocean-teal);text-shadow: 2px 2px 0px #000}
+.opening-content p{margin-top:20px;color:#D0EEFF;font-size:18px;font-style:italic}
+.opening-line{width:120px;height:3px;margin:20px auto;background:var(--sponge-yellow);border-radius:2px;box-shadow:0 0 10px var(--sponge-yellow)}
+
+.enter-button{
+  position:absolute;bottom:10%;left:50%;transform:translateX(-50%);z-index:10;
+  cursor:pointer;padding:16px 36px;border-radius:40px;border:3px solid var(--sponge-yellow);
+  color:#000;font-weight:700;font-family:'Fredoka One', cursive;font-size:16px;
+  background:linear-gradient(135deg, var(--sponge-yellow), #FFC700);
+  box-shadow:0 0 25px rgba(255,240,23,0.5);letter-spacing:2px;transition:.35s;
+}
+.enter-button:hover{
+  background:#fff;box-shadow:0 0 35px rgba(255,255,255,0.8);
+  transform:translateX(-50%) translateY(-5px) scale(1.05);
+}
+
+/* Home Section */
+.home-hero{min-height:100vh;position:relative;overflow:hidden;padding:140px 6% 80px;display:flex;align-items:center}
+.home-content{position:relative;z-index:5;width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:30px;
+  border:2px solid var(--sponge-yellow);background:rgba(255,240,23,0.1);
+  color:var(--sponge-yellow);font-size:12px;font-weight:600;letter-spacing:2px;
+}
+.home-copy h2{margin-top:15px;font-size:clamp(38px,5.5vw,68px);line-height:1.15;font-family:'Fredoka One', cursive}
+.home-copy h2 span{color:var(--sponge-yellow);text-shadow: 2px 2px 0px #000, 0 0 20px rgba(255,240,23,0.4)}
+.role{margin-top:18px;color:var(--ocean-teal);letter-spacing:3px;font-size:13px;font-weight:600}
+.description{margin-top:18px;max-width:560px;color:#C5E8FF;line-height:1.9;font-size:16px}
+
+.home-buttons{display:flex;gap:16px;margin-top:30px;flex-wrap:wrap}
+.button{
+  text-decoration:none;padding:14px 28px;border-radius:30px;display:inline-flex;
+  align-items:center;gap:10px;transition:.35s;font-size:14px;font-weight:600;
+}
+.button.primary{
+  color:#000;background:linear-gradient(135deg, var(--sponge-yellow), #FFC700);
+  box-shadow:0 0 20px rgba(255,240,23,0.4);font-family:'Fredoka One';
+}
+.button.primary:hover{transform:translateY(-4px);box-shadow:0 0 30px rgba(255,240,23,0.7);background:#fff}
+.button.secondary{
+  color:#fff;border:2px solid var(--ocean-teal);background:rgba(20,213,255,0.1);
+}
+.button.secondary:hover{transform:translateY(-4px);background:rgba(20,213,255,0.25);box-shadow:0 0 20px rgba(20,213,255,0.4)}
+
+.home-mini-info{
+  display:flex;margin-top:40px;width:max-content;max-width:100%;padding:18px 28px;
+  border-radius:24px;border:2px solid rgba(20,213,255,0.3);background:rgba(0, 32, 70, 0.7);
+  backdrop-filter:blur(12px);
+}
+.home-mini-info div{min-width:85px;text-align:center;padding:0 20px}
+.home-mini-info div+div{border-left:2px solid rgba(20,213,255,0.2)}
+.home-mini-info strong{display:block;color:var(--sponge-yellow);font-family:'Fredoka One';font-size:26px}
+.home-mini-info span{color:#90C0FF;font-size:10px;letter-spacing:2px}
+
+/* Ocean Centerstage Animation */
+.home-lake{position:relative;height:500px;display:grid;place-items:center}
+.lake-glow{
+  position:absolute;width:450px;height:450px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,240,23,0.2), rgba(20,213,255,0.1) 40%, transparent 70%);
+  filter:blur(15px);animation:lakeGlow 6s ease-in-out infinite;
+}
+@keyframes lakeGlow{50%{transform:scale(1.1);opacity:0.8}}
+
+/* Chapter Cards */
+.explore{position:relative;padding:100px 6%;background:linear-gradient(180deg, transparent, rgba(0, 20, 42, 0.8))}
+.section-heading{text-align:center;margin-bottom:50px}
+.section-heading>span{color:var(--sponge-yellow);font-size:12px;letter-spacing:4px;font-weight:600}
+.section-heading h2{margin-top:10px;font-size:clamp(35px,5vw,52px);font-family:'Fredoka One';color:#fff}
+.chapter-grid{width:min(1100px,100%);margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.chapter-card{
+  position:relative;overflow:hidden;padding:35px;min-height:270px;border-radius:28px;
+  text-decoration:none;color:#fff;border:2px solid rgba(20,213,255,0.2);
+  background:rgba(0, 32, 70, 0.6);backdrop-filter:blur(18px);transition:.4s;
+}
+.chapter-card:hover{
+  transform:translateY(-10px);border-color:var(--sponge-yellow);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4), 0 0 25px rgba(255,240,23,0.25);
+}
+.chapter-icon{
+  width:60px;height:60px;display:grid;place-items:center;border-radius:20px;
+  font-size:28px;margin-bottom:25px;background:rgba(255,255,255,0.08);
+}
+.chapter-card small{color:var(--sponge-yellow);letter-spacing:2px;font-size:10px;font-weight:600}
+.chapter-card h3{margin-top:8px;font-family:'Fredoka One';font-size:26px;color:#fff}
+.chapter-card p{margin-top:10px;color:#B0D8FF;line-height:1.7;font-size:14px}
+.chapter-card strong{position:absolute;bottom:28px;left:35px;color:var(--ocean-teal);font-size:12px;letter-spacing:1px}
+
+@media(max-width:900px){
+  .nav-links{display:none}
+  .home-content,.content-grid,.chapter-grid,.contact-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .home-lake{height:380px}
+}
+@media(max-width:600px){
+  .gallery-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr 1fr 1fr}
+  .page-hero h1{font-size:45px}
+  .music-dock{left:12px;right:12px;bottom:12px;width:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- Interactive Underwater Bubbles -->
+<div class="bubbles-container" id="bubblesContainer"></div>
+
+<!-- Mouse Glow & Star Effect -->
+<div id="mouseGlow"></div>
+
+<!-- Background Audio Controls (Optional) -->
+<div class="music-dock">
+  <div class="music-head">
+    <div>
+      <strong>SPONGEBOB THEME</strong>
+      <small>Bikini Bottom Vibes</small>
+    </div>
+    <a href="https://www.youtube.com" target="_blank" class="yt-link">▶ Play Music</a>
+  </div>
+  <div class="track-title">Ocean Adventure</div>
+  <audio class="site-audio" controls loop>
+    <source src="" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+</div>
+
+<!-- Opening Screen (SpongeBob Theme) -->
+<input type="checkbox" id="opening-control" class="opening-control">
+<div class="opening-screen">
+  <div class="opening-bg"></div>
+  <div class="opening-content">
+    <!-- Pineapple House Element -->
+    <div class="pineapple-house">
+      <div class="pineapple-window"></div>
+      <div class="pineapple-door"></div>
+    </div>
+    <div class="opening-small">WELCOME TO BIKINI BOTTOM</div>
+    <h1>SPONGEBOB<span>PORTFOLIO</span></h1>
+    <p>"I'm Ready! I'm Ready! I'm Ready!"</p>
+    <div class="opening-line"></div>
+    <label for="opening-control" class="enter-button">ENTER THE OCEAN 🍍</label>
+  </div>
+</div>
+
+<!-- Main Site Header -->
+<header class="site-header">
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <div class="logo-icon">🧽</div>
+      <div>
+        SPONGEBOB
+        <strong>PORTFOLIO</strong>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#home" class="active">หน้าแรก</a>
+      <a href="#about">เกี่ยวกับฉัน</a>
+      <a href="#skills">ทักษะและความสามารถ</a>
+      <a href="#contact">ติดต่อ</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Main Content Area -->
+<div class="page-wrap">
+  
+  <!-- Hero Section -->
+  <section id="home" class="home-hero">
+    <div class="home-content">
+      <div class="home-copy">
+        <div class="eyebrow">🍍 BIKINI BOTTOM EDITION</div>
+        <h2>ยินดีต้อนรับสู่<span>พอร์ตโฟลิโอ</span>สุดสดใส</h2>
+        <div class="role">STUDENT & CREATIVE DEVELOPER</div>
+        <p class="description">
+          รวบรวมผลงาน ความคิดสร้างสรรค์ และความตั้งใจในสไตล์ความสนุกสนานของ SpongeBob SquarePants มุ่งมั่นเรียนรู้และสร้างสรรค์สิ่งใหม่ๆ อยู่เสมอ!
+        </p>
+        <div class="home-buttons">
+          <a href="#about" class="button primary">สำรวจผลงาน ✨</a>
+          <a href="#contact" class="button secondary">ติดต่อฉัน ✉️</a>
+        </div>
+        <div class="home-mini-info">
+          <div>
+            <strong>100%</strong>
+            <span>ENERGY</span>
+          </div>
+          <div>
+            <strong>A+</strong>
+            <span>CREATIVITY</span>
+          </div>
+          <div>
+            <strong>2026</strong>
+            <span>PORTFOLIO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Centerpiece Decoration -->
+      <div class="home-lake">
+        <div class="lake-glow"></div>
+        <div class="pineapple-house" style="transform: scale(1.4);">
+          <div class="pineapple-window"></div>
+          <div class="pineapple-door"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Content Sections -->
+  <section id="about" class="content-section">
+    <div class="content-grid">
+      <div class="glass-card">
+        <h2>ABOUT ME ⭐️</h2>
+        <p>
+          สวัสดีครับ/ค่ะ! นี่คือพื้นที่นำเสนอประวัติ ผลงาน และทักษะการทำงานของฉันที่ได้รับแรงบันดาลใจจากความสดใสและพลังบวกของ SpongeBob พร้อมรับฟังและเรียนรู้สิ่งใหม่ๆ เพื่อพัฒนาตัวเองให้ดียิ่งขึ้น
+        </p>
+        <div class="chips">
+          <span class="chip">🎨 Creative Design</span>
+          <span class="chip">💻 Web Development</span>
+          <span class="chip">🚀 Positive Mindset</span>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h2>EXPERIENCE 🍔</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <small>2025 - PRESENT</small>
+            <h3>Full-Stack Student Project</h3>
+            <p>พัฒนาเว็บไซต์และแอปพลิเคชันเชิงสร้างสรรค์ด้วยดีไซน์และฟังก์ชันที่ทันสมัย</p>
+          </div>
+          <div class="timeline-item">
+            <small>2024 - 2025</small>
+            <h3>UI/UX Design & Graphics</h3>
+            <p>ออกแบบส่วนติดต่อผู้ใช้ และสื่อกราฟิกเน้นโทนสีสดใสและใช้งานง่าย</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore Cards -->
+  <section id="skills" class="explore">
+    <div class="section-heading">
+      <span>HIGHLIGHTS</span>
+      <h2>MY SPECIAL SKILLS</h2>
+    </div>
+    <div class="chapter-grid">
+      <div class="chapter-card">
+        <div class="chapter-icon">🧽</div>
+        <small>SKILL 01</small>
+        <h3>Web Design</h3>
+        <p>สร้างสรรค์เลย์เอาต์ที่สวยงาม น่าสนใจ และตอบโจทย์ผู้ใช้งานทุกอุปกรณ์</p>
+        <strong>EXPLORE →</strong>
+      </div>
+      <div class="chapter-card">
+        <div class="chapter-icon">⭐️</div>
+        <small>SKILL 02</small>
+        <h3>Creativity</h3>
+        <p>คิดค้นไอเดียแปลกใหม่พร้อมแรงบันดาลใจจากความสดใสรอบตัว</p>
+        <strong>EXPLORE →</strong>
+      </div>
+      <div class="chapter-card">
+        <div class="chapter-icon">🦀</div>
+        <small>SKILL 03</small>
+        <h3>Management</h3>
+        <p>วางแผน วางโครงสร้าง และจัดการเวลาอย่างมีประสิทธิภาพ</p>
+        <strong>EXPLORE →</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="content-section">
+    <div class="contact-grid">
+      <div class="glass-card">
+        <h2>CONTACT ME 📬</h2>
+        <p>สามารถติดต่อพูดคุย หรือสอบถามรายละเอียดเพิ่มเติมได้ทางช่องทางด้านล่างนี้ครับ/ค่ะ</p>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <small>EMAIL ADDRESS</small>
+            <strong>yourname@example.com</strong>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <small>PHONE NUMBER</small>
+            <strong>+66 81 234 5678</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card" style="display: flex; align-items: center; justify-content: center; text-align: center;">
+        <div class="quote">
+          "I'M <em>READY!</em> TO WORK WITH YOU!"
+          <p style="font-size: 14px; margin-top: 15px; color: var(--ocean-teal);">- SpongeBob Portfolio -</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-icon">🍍</div>
+    <h3>SPONGEBOB PORTFOLIO</h3>
+    <p>© 2026 Bikini Bottom Inspired Student Portfolio. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Interactive Scripts -->
+<script>
+  // Mouse Glow & Star Particles
+  const mouseGlow = document.getElementById('mouseGlow');
+  document.addEventListener('mousemove', (e) => {
+    mouseGlow.style.left = e.clientX + 'px';
+    mouseGlow.style.top = e.clientY + 'px';
+    
+    if(Math.random() < 0.08) {
+      const star = document.createElement('div');
+      star.className = 'mouse-star';
+      star.innerText = '⭐️';
+      star.style.left = e.clientX + 'px';
+      star.style.top = e.clientY + 'px';
+      star.style.setProperty('--mx', (Math.random() * 60 - 30) + 'px');
+      star.style.setProperty('--my', (Math.random() * 60 - 30) + 'px');
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 800);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 1000);
+  });
+
+  // Underwater Bubbles Generator
+  const bubblesContainer = document.getElementById('bubblesContainer');
+  function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    const size = Math.random() * 25 + 10;
+    bubble.style.width = size + 'px';
+    bubble.style.height = size + 'px';
+    bubble.style.left = Math.random() * 100 + '%';
+    bubble.style.setProperty('--duration', (Math.random() * 6 + 4) + 's');
+    bubble.style.setProperty('--bounce', (Math.random() * 100 - 50) + 'px');
+    bubblesContainer.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 10000);
+  }
+  setInterval(createBubble, 400);
+</script>
+
+</body>
+</html>
